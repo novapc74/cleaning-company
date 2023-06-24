@@ -1,0 +1,31 @@
+# Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "imagick"
+
+    resolvers:
+        default:
+            web_path:
+                cache_prefix: "%app.path.cache_media%"
+
+    filter_sets:
+        cache: ~
+
+        admin_thumbnail:
+            quality: 90
+            filters:
+                relative_resize:
+                    heighten: 40
+
+        banner_md:
+            quality: 90
+            filters:
+                downscale:
+                    max: [ 1920,846 ]
+
+        middle_banner:
+            quality: 90
+            filters:
+                downscale:
+                    max: [ 1024,768 ]
+

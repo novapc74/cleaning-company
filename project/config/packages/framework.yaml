@@ -18,7 +18,7 @@ framework:
     php_errors:
         log: true
 
-    ide: 'phpstorm://open?file=%%f&line=%%l&/project/>/home/novapc/projects/stock73/project/'
+    ide: 'phpstorm://open?file=%%f&line=%%l&/project/>/home/novapc/projects/cleaning-company/project/'
 
 when@test:
     framework:
