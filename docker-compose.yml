@@ -1,0 +1,71 @@
+version: '3.0'
+
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./project:/project
+    container_name: ${APP_NAME}-nginx
+    restart: always
+#    TODO: указать свободный порт
+    ports:
+      - "8069:80"
+    command: nginx -g 'daemon off;'
+
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+    environment:
+      XDEBUG_CONFIG: "remote_host=172.18.18.1 remote_enable=1 remote_autostart=off  remote_port=9008"
+      PHP_IDE_CONFIG: "serverName=first"
+    volumes:
+      - ./project:/project
+      # при изменении настроек в project.ini нужен `make restart`
+      - ./docker/php-fpm/project.ini:/usr/local/etc/php/conf.d/project.ini
+    container_name: ${APP_NAME}-php-fpm
+    depends_on:
+      - db
+
+  php-cli:
+    build:
+      context: ./docker/php-cli
+    volumes:
+      - ./project:/project
+      # при изменении настроек в project.ini нужен `make restart`
+      - ./docker/php-cli/project.ini:/usr/local/etc/php/conf.d/project.ini
+    command: sleep 10000
+    container_name: ${APP_NAME}-php-cli
+
+  node-cli:
+    container_name: ${APP_NAME}-node-cli
+    build:
+      context: ./docker/node-cli
+    volumes:
+      - ./project:/project
+
+  mailer:
+    image: schickling/mailcatcher
+    container_name: ${APP_NAME}-mailer
+#    TODO: указать свободный порт
+    ports:
+      - "1069:1080"
+
+  db:
+    container_name: ${APP_NAME}-db
+    image: mariadb:10.3
+    volumes:
+      - ./volumes/db/mysql://var/lib/mysql
+#    TODO: указать свободный порт
+    ports:
+      - "3369:3306"
+    restart: always
+    environment:
+      - MYSQL_PASSWORD=dev
+      - MYSQL_USER=dev
+      - MYSQL_DATABASE=dev
+      - MARIADB_ROOT_PASSWORD=root
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+
+volumes:
+  cleaning-company-db:
