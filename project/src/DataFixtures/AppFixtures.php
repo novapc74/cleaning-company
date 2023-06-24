@@ -2,16 +2,31 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class AppFixtures extends Fixture
+
+class AppFixtures extends BaseFixture
 {
-    public function load(ObjectManager $manager): void
+    public function __construct(private readonly UserPasswordHasherInterface $passwordEncoder)
     {
-        // $product = new Product();
-        // $manager->persist($product);
+    }
 
-        $manager->flush();
+    public function loadData(ObjectManager $manager): void
+    {
+        $admin = $manager->getRepository(User::class)->findOneBy(['email' => 'new-email@yandex.ru']);
+
+        if (null === $admin) {
+            $this->createEntity(User::class, 1, function (User $user) {
+                $user
+                    ->setEmail('new-email@yandex.ru')
+                    ->setRoles(["ROLE_ADMIN"])
+                    ->setPassword($this->passwordEncoder->hashPassword($user, 'super-password'));
+            });
+
+            $manager->flush();
+        }
     }
 }
+
