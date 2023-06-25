@@ -26,7 +26,7 @@ class FeedBackController extends AbstractController
             $em->persist($feedBack);
             $em->flush();
 
-            return $this->redirectToRoute('app_home_page');
+            return new Response(true, 201);
         }
 
         $prefix = $request->isXmlHttpRequest() ? 'form': 'feed_back';

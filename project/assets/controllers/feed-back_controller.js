@@ -1,7 +1,7 @@
 import {Controller} from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['form'];
+    static targets = ['form', 'feedBackForm'];
     static values = {
         url: String,
     }
@@ -27,13 +27,9 @@ export default class extends Controller {
     }
 
     async resolveFeedBack(event) {
-        const params = new URLSearchParams({
-            type: this.typeValue,
-        });
+        const formData = new FormData(this.feedBackFormTarget);
 
-        const formData = new FormData(this.appealTarget);
-
-        const response = await fetch(`${this.urlValue}?${params.toString()}`,
+        const response = await fetch(this.urlValue,
             {
                 body: formData,
                 method: "post",
