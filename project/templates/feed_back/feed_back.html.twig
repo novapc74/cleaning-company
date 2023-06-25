@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Обратная связь{% endblock %}
+
+{% block body %}
+
+    <div class="col-6" {{ stimulus_controller('feed-back', {'url': path('app_feed_back')}) }}>
+        <div data-feed-back-target="form"></div>
+    </div>
+
+{% endblock %}

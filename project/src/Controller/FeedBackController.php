@@ -29,7 +29,9 @@ class FeedBackController extends AbstractController
             return $this->redirectToRoute('app_home_page');
         }
 
-        return $this->render('feed_back/feed_back_form.html.twig', [
+        $prefix = $request->isXmlHttpRequest() ? 'form': 'feed_back';
+
+        return $this->render("feed_back/{$prefix}.html.twig", [
             'feedBackForm' => $form->createView(),
         ]);
     }
