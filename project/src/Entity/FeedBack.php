@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\FeedBackRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\ArrayShape;
 
 #[ORM\Entity(repositoryClass: FeedBackRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
 class FeedBack
 {
     #[ORM\Id]
@@ -33,6 +35,12 @@ class FeedBack
     #[ORM\Column]
     private ?bool $isDelivered;
 
+    #[ORM\Column]
+    private DateTimeImmutable $createdAt;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+
     private const PHONE_TYPE = 0;
     private const EMAIL_TYPE = 1;
 
@@ -49,6 +57,7 @@ class FeedBack
     {
         $this->connectionType = 0;
         $this->isDelivered = false;
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -126,5 +135,28 @@ class FeedBack
         $this->isDelivered = $isDelivered;
 
         return $this;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    #[ORM\PreUpdate]
+    public function preUpdate(): void
+    {
+        $this->updatedAt = new DateTimeImmutable('now');
     }
 }
