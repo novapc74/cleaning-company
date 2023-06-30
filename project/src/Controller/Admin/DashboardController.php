@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Review;
-use App\Entity\FeedBack;
+use App\Entity\Feedback;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -28,7 +28,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud('Пользователи', 'fa-solid fa-user-secret', User::class);
-        yield MenuItem::linkToCrud('Обратная связь', 'fa-solid fa-comments', FeedBack::class);
+        yield MenuItem::linkToCrud('Обратная связь', 'fa-solid fa-comments', Feedback::class);
 	    yield MenuItem::linkToCrud('Отзывы', 'fa-solid fa-comments', Review::class);
     }
 }

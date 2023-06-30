@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\FeedBack;
+use App\Entity\Feedback;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -18,7 +18,7 @@ class FeedBackCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return FeedBack::class;
+        return Feedback::class;
     }
 
     public function configureCrud(Crud $crud): Crud
