@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\FeedBack;
+use App\Entity\Feedback;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<FeedBack>
+ * @extends ServiceEntityRepository<Feedback>
  *
- * @method FeedBack|null find($id, $lockMode = null, $lockVersion = null)
- * @method FeedBack|null findOneBy(array $criteria, array $orderBy = null)
- * @method FeedBack[]    findAll()
- * @method FeedBack[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Feedback|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Feedback|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Feedback[]    findAll()
+ * @method Feedback[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FeedBackRepository extends ServiceEntityRepository
+class FeedbackRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, FeedBack::class);
+        parent::__construct($registry, Feedback::class);
     }
 
-    public function save(FeedBack $entity, bool $flush = false): void
+    public function save(Feedback $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class FeedBackRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(FeedBack $entity, bool $flush = false): void
+    public function remove(Feedback $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

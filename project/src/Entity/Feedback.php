@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\FeedBackRepository;
+use App\Repository\FeedbackRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\ArrayShape;
 
-#[ORM\Entity(repositoryClass: FeedBackRepository::class)]
+#[ORM\Entity(repositoryClass: FeedbackRepository::class)]
 #[ORM\HasLifecycleCallbacks()]
-class FeedBack
+class Feedback
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -2,25 +2,25 @@
 
 namespace App\Controller;
 
-use App\Entity\FeedBack;
-use App\Form\FeedBackFormType;
+use App\Entity\Feedback;
+use App\Form\FeedbackFormType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FeedBackController extends AbstractController
+class FeedbackController extends AbstractController
 {
-	#[Route('/feedback', name: 'app_feed_back', methods: ['GET', 'POST'])]
+	#[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
 	public function index(Request $request, ManagerRegistry $managerRegistry): Response
 	{
 		if (!$request->isXmlHttpRequest()) {
 			return $this->redirectToRoute('app_home_page');
 		}
 
-		$feedBack = new FeedBack();
-		$form     = $this->createForm(FeedBackFormType::class, $feedBack);
+		$feedBack = new Feedback();
+		$form     = $this->createForm(FeedbackFormType::class, $feedBack);
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
@@ -33,10 +33,8 @@ class FeedBackController extends AbstractController
 			return new Response(true, 201);
 		}
 
-		$prefix = $request->isXmlHttpRequest() ? 'form' : 'feed_back';
-
-		return $this->render("feed_back/{$prefix}.html.twig", [
-			'feedBackForm' => $form->createView(),
+		return $this->render("feedback/form.html.twig", [
+			'feedbackForm' => $form->createView(),
 		]);
 	}
 }
