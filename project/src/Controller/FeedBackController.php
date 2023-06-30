@@ -12,27 +12,31 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FeedBackController extends AbstractController
 {
-    #[Route('/feed/back', name: 'app_feed_back', methods: ['GET', 'POST'])]
-    public function index(Request $request, ManagerRegistry $managerRegistry): Response
-    {
-        $feedBack = new FeedBack();
-        $form = $this->createForm(FeedBackFormType::class, $feedBack);
+	#[Route('/feedback', name: 'app_feed_back', methods: ['GET', 'POST'])]
+	public function index(Request $request, ManagerRegistry $managerRegistry): Response
+	{
+		if (!$request->isXmlHttpRequest()) {
+			return $this->redirectToRoute('app_home_page');
+		}
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $feedBack = $form->getData();
+		$feedBack = new FeedBack();
+		$form     = $this->createForm(FeedBackFormType::class, $feedBack);
 
-            $em = $managerRegistry->getManager();
-            $em->persist($feedBack);
-            $em->flush();
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+			$feedBack = $form->getData();
 
-            return new Response(true, 201);
-        }
+			$em = $managerRegistry->getManager();
+			$em->persist($feedBack);
+			$em->flush();
 
-        $prefix = $request->isXmlHttpRequest() ? 'form': 'feed_back';
+			return new Response(true, 201);
+		}
 
-        return $this->render("feed_back/{$prefix}.html.twig", [
-            'feedBackForm' => $form->createView(),
-        ]);
-    }
+		$prefix = $request->isXmlHttpRequest() ? 'form' : 'feed_back';
+
+		return $this->render("feed_back/{$prefix}.html.twig", [
+			'feedBackForm' => $form->createView(),
+		]);
+	}
 }
