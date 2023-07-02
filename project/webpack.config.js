@@ -1,4 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
+const SpritePlugin = require('svg-sprite-loader/plugin');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -14,18 +16,6 @@ Encore
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
 
-    .copyFiles({
-        from: './assets/images',
-        // optional target path, relative to the output dir
-        // to: 'images/[path][name].[ext]',
-
-        // if versioning is enabled, add the file hash too
-        to: 'images/[path][name].[hash:8].[ext]',
-
-        // only copy files matching this pattern
-        pattern: /\.(png|jpg|jpeg)$/
-    })
-
     /*
      * ENTRY CONFIG
      *
@@ -33,6 +23,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    // .addEntry('admin', './assets/admin.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -66,10 +57,73 @@ Encore
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = '3.23';
+        config.debug = true;
     })
 
-// enables Sass/SCSS support
-//.enableSassLoader()
+    // enables Sass/SCSS support
+    .enableSassLoader()
+
+    .configureLoaderRule('images', (loaderRule) => {
+        loaderRule.exclude = [
+            path.resolve(__dirname, 'assets/app/src/images/svg')
+        ]; // new line
+    })
+
+    .addLoader({
+        test: /\.(svg)$/,
+        include: [
+            path.resolve(__dirname, 'assets/app/src/images/svg'),
+        ],
+        use: [
+            {
+                loader: 'svg-sprite-loader', options: {
+                    exclude: path.resolve(__dirname, 'assets/app/src/images/svg'),
+                    extract: true,
+                    publicPath: 'images/svg/',
+                    spriteFilename: svgPath => [path.basename(path.dirname(svgPath)), '[hash]', 'svg'].join('.')
+                }
+            },
+            {
+                loader: 'svgo-loader',
+                options: {
+                    configFile: false,
+                    plugins: [
+                        {
+                            name: 'removeAttrs',
+                            params: {
+                                attrs: "(fill|stroke)"
+                            }
+                        }
+                    ],
+                    name: 'images/[name].[ext]',
+                    publicPath: 'images/svg/'
+                }
+            }
+        ]
+    })
+
+    .copyFiles({
+        from: path.resolve(__dirname, 'assets/app/src/video'),
+        to: 'video/[path][name].[hash:8].[ext]'
+    })
+
+    .addPlugin(new SpritePlugin({
+        plainSprite: true,
+        plugins : [
+            {
+                name: 'removeAttrs',
+                params: {
+                    attrs: "(fill|stroke)"
+                }
+            }
+        ],
+        spriteAttrs: {
+            id:'',
+            fill: '',
+            stroke: '',
+        }
+    }))
+
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()

@@ -1,0 +1,13 @@
+// подключение базовых переменных
+@import "vars";
+
+// обнуление стилей
+@import "null";
+
+// базовые подключения
+@import "mixins";
+@import "fonts";
+@import "base";
+
+// подключения компонентов страницы
+@import "components/base/header";
