@@ -1,0 +1,153 @@
+// buttons
+@mixin solid-button {
+  padding: 15px 30px;
+  border-radius: 5px;
+  color: $white;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+
+  &:disabled {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+@mixin orange-button {
+  @include solid-button;
+  @media screen and (min-width: 1280px) {
+    &:hover {
+      background-color: $brown;
+    }
+  }
+
+  &:active {
+    background-color: $brown_light;
+  }
+  &:focus {
+    background-color: $brown;
+  }
+}
+
+@mixin brown-button {
+  @include solid-button;
+  @media screen and (min-width: 1280px) {
+    &:hover {
+      background-color: $orange;
+    }
+  }
+
+  &:active {
+    background-color: $brown_light;
+  }
+  &:focus {
+    background-color: $orange;
+  }
+}
+
+// links
+@mixin menu-link {
+  @include text-14;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: $brown;
+  position: relative;
+  transition: color .4s ease;
+
+  &:after {
+    content: '';
+    width: 0;
+    height: 1px;
+    background-color: $orange;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    transition: width .4s ease;
+  }
+
+  @media screen and (min-width: 1280px) {
+    &:hover {
+      background-color: $orange;
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+
+  &:active {
+    background-color: $brown_light;
+  }
+  &:focus {
+    background-color: $orange;
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
+// inputs
+@mixin base-input {
+  position: relative;
+  color: $brown-light;
+  input {
+    padding: 20px;
+    @include text-14;
+    border: 1px solid $grey;
+    border-radius: 15px;
+    transition: border-color .4s ease;
+
+    & ~ label {
+      @include text-14;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 20px;
+      padding: 0 6px;
+      background-color: $white;
+      transition-property: color, font-size, top;
+      transition-duration: .4s;
+      transition-timing-function: ease;
+    }
+
+    &:active, &.base-input_fill {
+      & ~ label {
+        top: 0;
+        font-size: 12px;
+      }
+    }
+    &:focus {
+      border-color: $brown;
+    }
+    &.base-input_success {
+      border-color: $orange;
+      & ~ label {
+        color: $orange;
+      }
+    }
+    &.base-input_error {
+      border-color: $red;
+      & ~ label {
+        color: $red;
+      }
+      & ~ .base-input__error {
+        opacity: 1;
+      }
+    }
+    & ~ .base-input__error {
+      @include text-14;
+      font-size: 12px;
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+
+    @media screen and (min-width: 1280px) {
+      &:hover {
+        border-color: $brown;
+      }
+    }
+  }
+}

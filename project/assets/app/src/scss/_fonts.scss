@@ -1,0 +1,5 @@
+@import "mixins/font-face";
+
+@include font-face("Inter", "Inter-400", 400, normal);
+@include font-face("Inter", "Inter-500", 500, normal);
+@include font-face("Raleway", "Raleway-400", 400, normal);

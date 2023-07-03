@@ -1,6 +1,7 @@
 body {
-  font-family: $ff;
+  font-family: $ff-main;
   font-size: 16px;
+  color: $brown;
   overflow: overlay;
 
   &::-webkit-scrollbar {
