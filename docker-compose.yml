@@ -65,7 +65,7 @@ services:
       - MYSQL_USER=dev
       - MYSQL_DATABASE=dev
       - MARIADB_ROOT_PASSWORD=root
-#    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
 volumes:
   cleaning-company-db:
