@@ -1,3 +1,5 @@
+@import "vars";
+
 body {
   font-family: $ff-main;
   font-size: 16px;
@@ -44,4 +46,8 @@ img {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+
+.text-number {
+  font-family: $ff-secondary;
 }
