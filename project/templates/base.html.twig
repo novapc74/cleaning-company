@@ -25,6 +25,11 @@
 {# {% endblock %} #}
 
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+
 {# @var contact \App\Entity\Contact #}
 {# @var social \App\Entity\Social #}
 {% set contact = contacts() %}
@@ -41,9 +46,5 @@
     {% endif %}
 {% endif %}
 
-
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
 </body>
 </html>
