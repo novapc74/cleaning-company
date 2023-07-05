@@ -25,6 +25,14 @@
 {# {% endblock %} #}
 
 
+{# @var contact \App\Entity\Contact #}
+{% set contact = contacts() %}
+{% if contacts() %}
+    {{ contact.phone }}
+    {{ contact.email }}
+{% endif %}
+
+
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
