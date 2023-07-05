@@ -9,8 +9,13 @@
 @import "fonts";
 @import "base";
 
+// подключения компонентов
+@import 'components/sections/base-section';
+
 // подключения компонентов страницы
 @import "components/base/header";
+@import "components/base/footer";
 
 // секции страницы
 @import "components/sections/hero-section";
+@import "components/sections/about-section";

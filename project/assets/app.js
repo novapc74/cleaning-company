@@ -6,7 +6,7 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-// import 'swiper/css/bundle';
+import 'swiper/css/bundle';
 import './app/src/scss/main.scss';
 // import 'video.js/dist/video-js.min.css'
 

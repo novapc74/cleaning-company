@@ -1,34 +1,47 @@
 <footer class="footer">
     <div class="container footer__container">
-        <div class="footer__top">
-            <div class="footer-logo logo">
-                <img src="{{ asset('build/images/logo-full.svg') }}" alt="spkk logo">
+        <div class="footer__body">
+            <div class="footer__top">
+                <div class="footer__logo logo">
+                    <img src="{{ asset('build/images/logo-full.svg') }}" alt="spkk logo">
+                </div>
+                <ul class="footer__association footer-association">
+                    <li class="footer-association__item">
+                        <a class="footer-association__link" href="https://xn--l1ap.xn--80ai4af.xn--p1acf/">
+                            <img src="{{ asset('build/images/logo-fm.svg') }}" alt="fm logo">
+                        </a>
+                    </li>
+                    <li class="footer-association__item">
+                        <a class="footer-association__link" href="https://xn--80aumx.xn--p1ai/">
+                            <img src="{{ asset('build/images/logo-akfo.svg') }}" alt="akfo logo">
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <ul class="footer__association footer-association">
-                <li class="footer-association__item">
-                    <img src="{{ asset('build/images/logo-fm.svg') }}" alt="fm logo">
+            <ul class="footer__contacts">
+                <li class="footer__contact footer-contact">
+                    <div class="footer-contact__name">Адрес</div>
+                    <a href="https://yandex.ru/maps/-/CDcWBrc" class="footer-contact__value">Санкт-Петербург,<br> Александра Невского ул, д 9, лит А</a>
                 </li>
-                <li class="footer-association__item">
-                    <img src="{{ asset('build/images/logo-akfo.svg') }}" alt="akfo logo">
+                <li class="footer__contact footer-contact">
+                    <div class="footer-contact__name">E–mail</div>
+                    <a href="mailto:info@spbkk.info" class="footer-contact__value">info@spbkk.info</a>
+                </li>
+                <li class="footer__contact footer-contact">
+                    <div class="footer-contact__name">Телефон</div>
+                    <a href="tel:+7 (812) 712-62-19" class="footer-contact__value text-number">+7 (812) 712-62-19</a>
                 </li>
             </ul>
         </div>
-        <ul class="footer__contacts">
-            <li class="footer__contact footer-contact">
-                <div class="footer-contact__name">Адрес</div>
-                <a href="https://yandex.ru/maps/-/CDcWBrc" class="footer-contact__value">Санкт-Петербург,<br> Александра Невского ул, д 9, лит А</a>
-            </li>
-            <li class="footer__contact footer-contact">
-                <div class="footer-contact__name">E–mail</div>
-                <a href="mailto:info@spbkk.info" class="footer-contact__value">info@spbkk.info</a>
-            </li>
-            <li class="footer__contact footer-contact">
-                <div class="footer-contact__name">Телефон</div>
-                <a href="tel:+7 (812) 712-62-19" class="footer-contact__value">+7 (812) 712-62-19</a>
-            </li>
-        </ul>
         <div class="footer__bottom">
-
+            <span class="footer__policy footer__policy_rights">Все права защищены</span>
+            <a href="/policy" class="footer__policy">Политика конфиденциальности</a>
+            <button class="footer__up-btn">
+                Наверх
+                <svg>
+                    <use xlink:href="{{ asset('build/images/svg/sprite.svg') }}#arrow-up"></use>
+                </svg>
+            </button>
         </div>
     </div>
 </footer>
