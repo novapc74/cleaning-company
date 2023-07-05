@@ -53,9 +53,9 @@ services:
 
   db:
     container_name: ${APP_NAME}-db
-    image: mariadb:11.0.2
+    image: mariadb:10.3
     volumes:
-      - ./volumes/db/mysql://var/lib/mysql
+      - cleaning-company-db://var/lib/mysql
 #    TODO: указать свободный порт
     ports:
       - "3369:3306"
@@ -65,7 +65,7 @@ services:
       - MYSQL_USER=dev
       - MYSQL_DATABASE=dev
       - MARIADB_ROOT_PASSWORD=root
-    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
 volumes:
   cleaning-company-db:
