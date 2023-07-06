@@ -48,6 +48,9 @@ img {
   }
 }
 
+.logo {
+  user-select: none;
+}
 .text-number {
   font-family: $ff-secondary;
 }

@@ -4,9 +4,14 @@ export default function swipers() {
     const gallerySwiper = new Swiper('.gallery-slider__swiper', {
         slidesPerView: 1,
         spaceBetween: 10,
-        speed: 500,
+        loop: true,
+        speed: 1000,
+        autoplay: {
+            delay: 5000,
+            pauseOnMouseEnter: true
+        },
         pagination: {
-            el: '.gallery__pagination',
+            el: '.gallery-slider__pagination',
             type: 'fraction'
         },
         navigation: {

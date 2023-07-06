@@ -52,6 +52,42 @@
   }
 }
 
+@mixin slider-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $orange;
+  }
+  &_prev {
+    transform: rotate(180deg);
+  }
+  @media screen and (min-width: 1280px) {
+    &:before {
+      content: '';
+      width: 42px;
+      height: 42px;
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(-70%, -50%);
+      border: 1px solid $brown;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    &:hover {
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
 // links
 @mixin menu-link {
   @include text-14;
