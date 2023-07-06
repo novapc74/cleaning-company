@@ -22,22 +22,33 @@
                     </li>
                 </ul>
             </div>
+            {% if contact is not null %}
             <ul class="footer__contacts">
-                <li class="footer__contact footer-contact">
-                    <div class="footer-contact__name">Адрес</div>
-                    {% set address = contact.address %}
-                    <a href="https://yandex.ru/maps/-/CDcWBrc" class="footer-contact__value">{{ contact.explodeAddress[0] }}<br>{{ contact.explodeAddress[1] }}</a>
-                </li>
-                <li class="footer__contact footer-contact">
-                    <div class="footer-contact__name">E–mail</div>
-                    <a href="mailto:info@spbkk.info" class="footer-contact__value">{{ contact.email ?? '' }}</a>
-                </li>
-                <li class="footer__contact footer-contact">
-                    <div class="footer-contact__name">Телефон</div>
-                    <a href="tel:+7 (812) 712-62-19" class="footer-contact__value text-number">{{ contact.phone ?? '' }}</a>
-                </li>0
+                {% if contact.address is not null and contact.address is defined %}
+                    <li class="footer__contact footer-contact">
+                        <div class="footer-contact__name">Адрес</div>
+                        {% set address = contact.address %}
+                        <a href="https://yandex.ru/maps/-/CDcWBrc"
+                           class="footer-contact__value">{{ contact.explodeAddress[0] }}
+                            <br>{{ contact.explodeAddress[1] }}</a>
+                    </li>
+                {% endif %}
+                {% if contact.email is not null and contact.email is defined %}
+                    <li class="footer__contact footer-contact">
+                        <div class="footer-contact__name">E–mail</div>
+                        <a href="mailto:{{ contact.email }}" class="footer-contact__value">{{ contact.email }}</a>
+                    </li>
+                {% endif %}
+                {% if contact.phone is not null and contact.phone is defined %}
+                    <li class="footer__contact footer-contact">
+                        <div class="footer-contact__name">Телефон</div>
+                        <a href="tel:{{ contact.phone }}"
+                           class="footer-contact__value text-number">{{ contact.phone }}</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
+        {% endif %}
         <div class="footer__bottom">
             <span class="footer__policy footer__policy_rights">Все права защищены</span>
             <a href="/policy" class="footer__policy">Политика конфиденциальности</a>
