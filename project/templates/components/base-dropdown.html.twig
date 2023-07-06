@@ -1,0 +1,24 @@
+{% set count = count | default(null) %}
+
+<div class="base-dropdown" data-dropdown="{{ name }}">
+    <div class="base-dropdown__header">
+        <div class="base-dropdown__heading">
+            {% if count is not null %}
+                <span class="base-dropdown__count text-number">
+                {% if count > 9 %}
+                    {{ count }}
+                {% else %}
+                    0{{ count }}
+                {% endif %}
+                </span>
+            {% endif %}
+            <h3 class="base-dropdown__title">{{ title }}</h3>
+        </div>
+        <button class="base-dropdown__btn" data-open-dropdown data-name="{{ name }}"></button>
+    </div>
+    <div class="base-dropdown__inner">
+        <div class="base-dropdown__content">
+            {{ content }}
+        </div>
+    </div>
+</div>

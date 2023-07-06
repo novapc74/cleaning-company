@@ -11,6 +11,7 @@
 
 // подключения компонентов
 @import 'components/sections/base-section';
+@import "components/base-dropdown";
 
 // подключения компонентов страницы
 @import "components/base/header";
@@ -20,3 +21,4 @@
 @import "components/sections/hero-section";
 @import "components/sections/about-section";
 @import "components/sections/gallery-section";
+@import "components/sections/services-section";

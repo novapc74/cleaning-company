@@ -1,0 +1,20 @@
+<section class="base-section base-section_grey steps-section" id="process">
+    <div class="container">
+        <h2 class="base-section__title">Как мы работаем</h2>
+        {% set list = [
+            { title: 'Приглашение на тендер или закупку', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aut, corporis doloremque ex fuga harum id in perferendis quibusdam quod sit tenetur veniam. Aperiam assumenda dolorum error porro quo!' },
+            { title: 'Связываемся с вами', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aut, corporis doloremque ex fuga harum id in perferendis quibusdam quod sit tenetur veniam. Aperiam assumenda dolorum error porro quo!' },
+            { title: 'Проводим аудит помещения', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aut, corporis doloremque ex fuga harum id in perferendis quibusdam quod sit tenetur veniam. Aperiam assumenda dolorum error porro quo!Lorem ipsum dolor sit amet, consectetur adipisicing elit.' },
+            { title: 'Согласование работ', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aut, corporis doloremque ex fuga harum id in perferendis quibusdam quod sit tenetur veniam. Aperiam assumenda dolorum error porro quo! Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aut, corporis doloremque ex fuga harum id in perferendis quibusdam quod sit tenetur veniam. Aperiam assumenda dolorum error porro quo!' },
+            { title: 'Уборка', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' },
+            { title: 'Расчет', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.' }
+        ] %}
+        <ul class="steps-section__steps">
+            <li class="steps-section__step">
+                {% for item in list %}
+                    {% include 'components/base-dropdown.html.twig' with { count: loop.index, name: 'process', title: item.title, content: item.description } %}
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</section>

@@ -110,6 +110,7 @@
     align-items: center;
     gap: 6px;
     @include text-14;
+    line-height: 110%;
     font-size: 16px;
     color: $white;
     text-transform: uppercase;
