@@ -27,6 +27,11 @@ class Social
     #[ORM\ManyToOne(inversedBy: 'socials')]
     private ?Contact $contact = null;
 
+    public function __toString(): string
+    {
+     return $this->title;   // TODO: Implement __toString() method.
+    }
+
     public function getId(): ?int
     {
         return $this->id;
