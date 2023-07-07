@@ -4,6 +4,8 @@
 {# @var services \App\Entity\PageSection #}
 {# @var advantages \App\Entity\PageSection #}
 {# @var image \App\Entity\Media #}
+{# @var gallery \App\Entity\Gallery #}
+
 
 {% extends 'base.html.twig' %}
 
@@ -30,5 +32,15 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
+
+{#
+
+{% for gallery in gallery_collection %}
+    <!-- фильтры брать с project/config/packages/liip_images.yaml -->
+    <img src="{{ vich_uploader_asset(gallery.image, 'imageFile') | imagine_filter_cache('banner_md') }}"
+         alt="">
+{% endfor %}
+
+#}
 
 {% endblock %}
