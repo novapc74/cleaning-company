@@ -30,21 +30,5 @@
 {% endblock %}
 
 
-{# @var contact \App\Entity\Contact #}
-{# @var social \App\Entity\Social #}
-{% set contact = contacts() %}
-{% if contacts() %}
-    {{ contact.phone }}
-    {{ contact.email }}
-    {{ contact.address }}
-    {% if contact.socials is not null %}
-        {% for social in contact.socials %}
-            {{ social.title }}
-            {{ social.slug }}
-            {{ social.link }}
-        {% endfor %}
-    {% endif %}
-{% endif %}
-
 </body>
 </html>

@@ -33,6 +33,9 @@ app-composer-install:
 app-migrations:
 	cd project && docker-compose run --rm php-cli bin/console d:m:m --no-interaction
 
+app-fixtures:
+	cd project && docker-compose run --rm php-cli bin/console d:f:l --append
+
 yarn-install:
 	cd project && docker-compose run --rm node-cli yarn install
 
