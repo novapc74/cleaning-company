@@ -5,8 +5,10 @@ namespace App\Entity;
 use JetBrains\PhpStorm\ArrayShape;
 use App\Repository\GalleryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: GalleryRepository::class)]
+#[Vich\Uploadable]
 class Gallery
 {
 	#[ORM\Id]

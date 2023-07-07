@@ -29,21 +29,29 @@ class PageSection
     #[ORM\Column(nullable: false)]
     private ?string $type = null;
 
-	private const ABOUT_TYPE = 0;
+	private const ABOUT_TYPE = 5;
 	private const WORK_TYPE = 1;
 	private const QUESTION_TYPE = 2;
 
+	private const SERVICE_TYPE = 3;
+
+	private const ADVANTAGE_TYPE = 4;
+
 	#[ArrayShape([
-		'о нас' => 'integer',
-		'как это работает' => 'integer',
-		'вопрос - ответ' => 'integer',
+		'О нас' => 'integer',
+		'Как мы работаем' => 'integer',
+		'Вопрос - ответ' => 'integer',
+		'Наши услуги' => 'integer',
+		'Преимущества' => 'integer'
 	])]
 	public static function getAvailableSectionType(): array
 	{
 		return [
-			'о нас' => self::ABOUT_TYPE,
-			'как это работает' => self::WORK_TYPE,
-			'вопрос - ответ' => self::QUESTION_TYPE,
+			'О нас' => self::ABOUT_TYPE,
+			'Как мы работаем' => self::WORK_TYPE,
+			'Вопрос - ответ' => self::QUESTION_TYPE,
+			'Наши услуги' => self::SERVICE_TYPE,
+			'Преимущества' => self::ADVANTAGE_TYPE,
 		];
 	}
     public function __construct()

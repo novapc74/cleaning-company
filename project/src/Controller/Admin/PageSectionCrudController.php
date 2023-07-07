@@ -37,7 +37,6 @@ class PageSectionCrudController extends AbstractCrudController
 				->setChoices(PageSection::getAvailableSectionType())
 				->setTextAlign('center')
 				->setColumns('col-sm-6 col-lg-5 col-xxl-3')
-
 			,
 			FormField::addRow(),
 			TextEditorField::new('description', 'Описание')
