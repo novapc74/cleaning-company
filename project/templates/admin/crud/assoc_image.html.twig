@@ -1,0 +1,17 @@
+{% if  attribute(entity.instance, field.property) is defined %}
+    {% set image = attribute(entity.instance, field.property) %}
+{% else %}
+    {% set image = entity.instance %}
+{% endif %}
+
+{% if image.mimeType is defined %}
+    {% if image.mimeType != "image/svg+xml" %}
+        {% if vich_uploader_asset(image, 'imageFile') != null %}
+            <img src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter_cache('admin_thumbnail') }}"
+                 alt="{{ image.mimeType }}">
+        {% endif %}
+    {% else %}
+        <img src="{{ asset('upload/media/' ~ image.imageName) }}"
+             alt="{{ image.mimeType }}">
+    {% endif %}
+{% endif %}

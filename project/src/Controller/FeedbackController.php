@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Feedback;
-use App\Form\FeedbackFormType;
+use App\Form\Admin\FeedbackFormType;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FeedbackController extends AbstractController
 {

@@ -2,6 +2,6 @@ vich_uploader:
     db_driver: orm
     mappings:
         media:
-            uri_prefix: /upload/images
+            uri_prefix: /upload/media
             upload_destination: '%kernel.project_dir%/public%app.path.upload.media%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

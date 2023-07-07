@@ -28,6 +28,9 @@ class Contact
 	#[ORM\OneToMany(mappedBy: 'contact', targetEntity: Social::class)]
 	private Collection $socials;
 
+	#[ORM\Column(length: 255, nullable: true)]
+	private ?string $link = null;
+
 	public function __construct()
 	{
 		$this->socials = new ArrayCollection();
@@ -107,5 +110,17 @@ class Contact
 	public function explodeAddress(): array
 	{
 		return explode("\r\n\r\n", $this->address);
+	}
+
+	public function getLink(): ?string
+	{
+		return $this->link;
+	}
+
+	public function setLink(?string $link): static
+	{
+		$this->link = $link;
+
+		return $this;
 	}
 }

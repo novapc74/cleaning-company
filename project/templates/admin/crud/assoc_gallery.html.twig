@@ -1,0 +1,15 @@
+{% if  attribute(entity.instance, field.property) is defined %}
+    {% set gallery = attribute(entity.instance, field.property) %}
+{% else %}
+    {#  TODO сделать все правильно, с проверками...  #}
+    {% set gallery = entity.instance.gallery %}
+{% endif %}
+
+{# TODO если mimeType -> pdf - то иконку отобразить, в админке сделать возможность выгрузить файл... #}
+
+{% for item in gallery %}
+    {% if item.image is not null %}
+        <img src="{{ vich_uploader_asset(item.image, 'imageFile') | imagine_filter_cache('admin_thumbnail') }}"
+             alt="{{ item.image.mimeType }}">
+    {% endif %}
+{% endfor %}
