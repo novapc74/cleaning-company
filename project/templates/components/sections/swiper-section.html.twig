@@ -1,0 +1,21 @@
+{% set theme = theme | default('base') %}
+<section class="base-section{% if theme == 'grey'%} base-section_grey{% endif%} swiper-section">
+    <div class="container">
+        <div class="swiper-section__header">
+            <h2 class="base-section__title">{{ title }}</h2>
+            <div class="swiper-section__navigation">
+                <div class="swiper-section__btn swiper-section__btn_prev {{ type }}-swiper__btn_prev"></div>
+                <div class="swiper-section__btn swiper-section__btn_next {{ type }}-swiper__btn_next"></div>
+            </div>
+        </div>
+        <div class="swiper swiper-section__swiper {{ type }}-swiper">
+            <div class="swiper-wrapper">
+                {% for slide in slides %}
+                    <div class="swiper-slide {{ type }}-swiper__slide">
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

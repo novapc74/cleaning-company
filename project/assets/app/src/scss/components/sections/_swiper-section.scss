@@ -1,0 +1,17 @@
+@import "../../mixins";
+.swiper-section {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__navigation {
+    display: flex;
+    gap: 6px;
+  }
+  &__btn {
+    @include slider-btn;
+    width: 46px;
+    height: 46px;
+  }
+}

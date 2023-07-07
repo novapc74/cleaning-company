@@ -1,0 +1,9 @@
+<div class="case-slide">
+    <div class="case-slide__image">
+        <img src="{{ vich_uploader_asset(item.image, 'imageFile') | imagine_filter_cache('banner_md') }}" alt="{{ case.title }}">
+    </div>
+    <div class="case-slide__bottom">
+        <h3 class="case-slide__title">{{ case.title }}</h3>
+        <div class="case-slide__description text-number">{{ case.description }}</div>
+    </div>
+</div>

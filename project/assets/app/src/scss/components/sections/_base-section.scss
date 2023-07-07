@@ -31,4 +31,28 @@
       padding-top: 0;
     }
   }
+  &__heading {
+    @include title-16-500;
+    @media screen and (min-width: 1280px) {
+      @include title-4-500;
+    }
+  }
+  &__content {
+    @include text-14-16;
+    color: $brown-light;
+
+    p + ul {
+      margin-top: 10px;
+    }
+
+    li {
+      list-style: disc;
+      margin-left: 25px;
+    }
+
+    b {
+      color: $orange;
+      font-weight: 400;
+    }
+  }
 }
