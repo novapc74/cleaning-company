@@ -1,9 +1,9 @@
 {# @var review \App\Entity\Review #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReviewController!{% endblock %}
+{% block title %}Отзывы{% endblock %}
 
-{% block body %}
+{% block content %}
     <style>
         .example-wrapper {
             margin: 1em auto;
@@ -19,12 +19,16 @@
     </style>
 
     <div class="example-wrapper">
-        <h1>Hello {{ 'Отзывы' }}! ✅</h1>
-
         <ul>
             {% for review in reviews %}
                 <li>
                     <a href="{{ path('app_single_review', {slug: review.slug}) }}">{{ review.name }}</a>
+                    {{ review.comment }}
+                    {{ review.createdAt | format_datetime('medium', 'none', locale='ru') }}
+                    {% for avatar in review.image %}
+                        <img src="{{ vich_uploader_asset(avatar.image, 'imageFile') | imagine_filter_cache('admin_thumbnail') }}"
+                             alt="{{ review.name }}">
+                    {% endfor %}
                 </li>
             {% endfor %}
         </ul>
