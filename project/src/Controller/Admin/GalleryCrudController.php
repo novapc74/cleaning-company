@@ -29,7 +29,6 @@ class GalleryCrudController extends AbstractCrudController
 				->onlyOnIndex()
 				->setTemplatePath('admin/crud/assoc_image.html.twig')
 			,
-			// TODO скрыть поле type!!! через новую форму...
 			FormField::addPanel('Картинка')
 				->setProperty('image')
 				->setFormType(MediaFormType::class)

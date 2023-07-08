@@ -29,6 +29,7 @@ class PageSectionCrudController extends AbstractCrudController
 	public function configureFields(string $pageName): iterable
 	{
 		return [
+            FormField::addTab('Основное'),
 			TextField::new('title', 'Заголовок')
 				->setColumns('col-sm-6 col-lg-5 col-xxl-3')
 				->setTextAlign('center')
@@ -41,7 +42,10 @@ class PageSectionCrudController extends AbstractCrudController
 			FormField::addRow(),
 			TextEditorField::new('description', 'Описание')
 				->setFormType(CKEditorType::class)
+                ->setTextAlign('center')
+                ->setColumns('col-sm-12 col-lg-10 col-xxl-6')
 			,
+            FormField::addTab('Изображения'),
 			TextField::new('image', 'Файлы')
 				->onlyOnIndex()
 				->setTemplatePath('admin/crud/assoc_gallery.html.twig')

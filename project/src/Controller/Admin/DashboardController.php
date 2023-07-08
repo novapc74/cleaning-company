@@ -32,13 +32,13 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToCrud('Пользователи', 'fa-solid fa-user-secret', User::class);
-        yield MenuItem::linkToCrud('Обратная связь', 'fa-solid fa-comments', Feedback::class);
+        yield MenuItem::linkToCrud('Пользователи', 'fa-solid fa-user', User::class);
+        yield MenuItem::linkToCrud('Обратная связь', 'fa-solid fa-comment', Feedback::class);
 	    yield MenuItem::linkToCrud('Отзывы', 'fa-solid fa-comments', Review::class);
-        yield MenuItem::linkToCrud('Контакты', 'fa-solid fa-contacts', Contact::class);
-        yield MenuItem::linkToCrud('Соц.сети', 'fa-solid fa-social', Social::class);
-	    yield MenuItem::linkToCrud('Локации', 'fa-solid fa-social', Location::class);
-	    yield MenuItem::linkToCrud('Галерея', 'fa-solid fa-social', Gallery::class);
-	    yield MenuItem::linkToCrud('Секции на страницах', 'fa-solid fa-social', PageSection::class);
+        yield MenuItem::linkToCrud('Контакты', 'fa-solid fa-address-book', Contact::class);
+        yield MenuItem::linkToCrud('Соц.сети', 'fa-brands fa-telegram', Social::class);
+	    yield MenuItem::linkToCrud('Локации', 'fa-sharp fa-solid fa-city', Location::class);
+	    yield MenuItem::linkToCrud('Галерея', 'fa-sharp fa-solid fa-images', Gallery::class);
+	    yield MenuItem::linkToCrud('Секции на страницах', "fa-sharp fa-solid fa-puzzle-piece", PageSection::class);
     }
 }

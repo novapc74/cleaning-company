@@ -13,10 +13,6 @@ class GalleryType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options): void
 	{
 		$builder
-			->add('type', ChoiceType::class, [
-				'label' => 'тип',
-				'choices' => Gallery::getAvailableGalleryType()
-			])
 			->add('image', MediaFormType::class, [
 				'label' => 'картинка',
 				'by_reference' => false,

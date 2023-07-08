@@ -1,60 +1,18 @@
 # Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
 
 twig:
-    form_themes:
-        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+  form_themes:
+    - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 fos_ck_editor:
-    configs:
-        my_config:
-            toolbar: full
-        page_editor:
-            toolbar: page_edit
-            height: 400
-            stylesSet: 'custom'
-            format_tags: 'p;h1;h2;h3;h4;pre'
-            contentsCss: ['build/wysiwyg-preview.css']
-    #            filebrowserBrowseRouteParameters: []
-    toolbars:
-        configs:
-            page_edit: [
-                '@standard.clipboard',
-                ['Bold',
-                 'Italic',
-                 'Underline',
-                 'Strike',
-                 'Subscript',
-                 'Superscript',
-                 '-',
-                 'RemoveFormat',
-                ],
-                ['Link', 'Unlink'],
-                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'],
-                [
-                    'Styles',
-                    'Format'
-                ],
-                ['Table', 'Image'],
-
-            ]
-    styles:
-        custom: [
-            { name: 'Без стиля',
-              element: ['p','li', 'h1', 'h2', 'h3', 'h4', 'td', 'th']
-            },
-            { name: 'Текст перед картинкой',
-              element: 'p',
-              attributes: { 'class': 'image__title' }
-            },
-            { name: 'Неразрывный текст',
-              element: 'span',
-              attributes: { 'class': 'text_nowrap' }
-            },
-            { name: 'Список без пунктов',
-              element: 'ul',
-              attributes: { 'class': 'formatted-text__dl' }
-            },
-            { name: 'Таблица с товарами',
-              element: 'table',
-              attributes: { 'class': 'products-table' }
-            }
-        ]
+  default_config: my_config
+  configs:
+    my_config:
+      toolbar: [
+        [ "Maximize" ],
+        [ 'Bold', 'Italic', 'Strike' ],
+        [ 'Format' ],
+        #        [ 'Link', 'Unlink' ],
+        #        [ 'Table', 'Image' ],
+        [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ],
+      ]
+      format_tags: 'p;h1;h2;h3;h4;pre'

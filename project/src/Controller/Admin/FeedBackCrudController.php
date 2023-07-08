@@ -35,33 +35,43 @@ class FeedBackCrudController extends AbstractCrudController
         return [
             TextField::new('name', 'ФИО')
                 ->setTextAlign('center')
-//                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
             ,
             ChoiceField::new('connectionType', 'Тип связи')
                 ->setChoices(FeedBack::getAvailableConnectionType())
                 ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
             ,
             FormField::addRow(),
             TextField::new('phone', 'Телефон')
                 ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
             ,
             EmailField::new('email', 'Email')
                 ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
             ,
             FormField::addRow(),
             TextareaField::new('comment', 'Комментарий')
                 ->setTextAlign('center')
+                ->setColumns('col-sm-12 col-lg-10 col-xxl-6')
             ,
             BooleanField::new('isDelivered', 'Прочитано?')
                 ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
+                ->onlyOnIndex()
             ,
             DateTimeField::new('createdAt', 'Время создания')
                 ->formatValue((fn($value, $entity) => (new IntlDateFormatter('ru_RU', 3, 3, null, null, 'd MMMM Y h:m'))->format($entity->getCreatedAt())))
                 ->onlyOnIndex()
+                ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
             ,
             DateTimeField::new('updatedAt', 'Время обновления')
                 ->formatValue((fn($value, $entity) => (new IntlDateFormatter('ru_RU', 3, 3, null, null, 'd MMMM Y h:m'))->format($entity->getUpdatedAt())))
                 ->onlyOnIndex()
+                ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
             ,
         ];
     }
