@@ -13,8 +13,29 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
+use Doctrine\ORM\QueryBuilder;
+//use Doctrine\Persistence\ManagerRegistry;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
+use Symfony\Component\HttpFoundation\RequestStack;
+use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository;
+//use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
+
+
 class PageSectionCrudController extends AbstractCrudController
 {
+    public function __construct(private readonly RequestStack      $requestStack,
+//                                private readonly ManagerRegistry   $managerRegistry,
+//                                private readonly AdminUrlGenerator $adminUrlGenerator
+    )
+    {
+    }
+
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -59,5 +80,26 @@ class PageSectionCrudController extends AbstractCrudController
                 ->setEntryType(GalleryType::class)
                 ->onlyOnForms()
         ];
+    }
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+    {
+        $repository = $this->container->get(EntityRepository::class);
+
+        if ($this->requestStack->getCurrentRequest()->query->has('type')) {
+            $type = $this->requestStack->getCurrentRequest()->query->get('type');
+
+            return $repository->createQueryBuilder($searchDto, $entityDto, $fields, $filters)
+                ->andWhere('entity.type = :val')
+                ->setParameter('val', $type);
+        }
+
+        return $repository->createQueryBuilder($searchDto, $entityDto, $fields, $filters)
+            ->andWhere('entity.id = :val')
+            ->setParameter('val', null);
     }
 }
