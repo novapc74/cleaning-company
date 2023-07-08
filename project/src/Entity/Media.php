@@ -94,6 +94,6 @@ class Media
 
 	public function __toString(): string
 	{
-		return $this->imageName ?? 'image';    // TODO: Implement __toString() method.
+		return $this->imageName ?? 'image';
 	}
 }

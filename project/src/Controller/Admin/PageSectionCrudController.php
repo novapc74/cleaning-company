@@ -79,6 +79,7 @@ class PageSectionCrudController extends AbstractCrudController
             CollectionField::new('gallery', 'Картинки')
                 ->setEntryType(GalleryType::class)
                 ->onlyOnForms()
+            ,
         ];
     }
 

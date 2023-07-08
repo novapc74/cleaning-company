@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use DateTimeImmutable;
 use App\Repository\ReviewRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use mysql_xdevapi\TableInsert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
@@ -29,12 +33,22 @@ class Review
     #[ORM\Column]
     private ?DateTimeImmutable $createdAt = null;
 
-	public function __construct()
-	{
-		$this->createdAt = new DateTimeImmutable();
-	}
+    #[Assert\Count([
+        'min' => 1,
+        'max' => 1,
+        'minMessage' => 'Коллекция должна содержать ровно {{ limit }} изображение',
+        'maxMessage' => 'Коллекция должна содержать ровно {{ limit }} изображение',
+    ])]
+    #[ORM\OneToMany(mappedBy: 'review', targetEntity: Gallery::class, cascade: ['persist', 'remove'])]
+    private ?Collection $image;
 
-	public function getId(): ?int
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->image = new ArrayCollection();
+    }
+
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -83,6 +97,36 @@ class Review
     public function setCreatedAt(DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gallery>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Gallery $image): static
+    {
+        if (!$this->image->contains($image)) {
+            $this->image->add($image);
+            $image->setReview($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Gallery $image): static
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getReview() === $this) {
+                $image->setReview(null);
+            }
+        }
 
         return $this;
     }
