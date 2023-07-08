@@ -49,26 +49,26 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Галерея', 'fa-sharp fa-solid fa-images', Gallery::class);
 
         yield MenuItem::section('Секции на страницах', 'fa-sharp fa-solid fa-puzzle-piece');
-
-        yield MenuItem::linkToUrl('Добавить секцию', 'fa-solid fa-plus', $this->adminUrlGenerator
-            ->unsetAll()
-            ->setController(PageSectionCrudController::class)
-            ->setAction(Crud::PAGE_INDEX)
-            ->generateUrl()
-        );
-
-        foreach ($this->getSectionMenu() as $value) {
-            list($label, $icon, $url) = $value;
+        foreach (self::getSectionMenu() as [$label, $icon, $url]) {
             yield MenuItem::linkToUrl($label, $icon, $url);
         }
     }
 
-    public function getSectionMenu(): array
+    private function getSectionMenu(): array
     {
         $dataSectionMenu = [];
-        $sections = $this->managerRegistry->getRepository(PageSection::class)->findAll();
 
-        foreach ($sections as $section) {
+        $dataSectionMenu['Добавить секцию'] = [
+            'Добавить секцию',
+            'fa-solid fa-plus',
+            $this->adminUrlGenerator
+                ->unsetAll()
+                ->setController(PageSectionCrudController::class)
+                ->setAction(Crud::PAGE_INDEX)
+                ->generateUrl()
+        ];
+
+        foreach ($this->managerRegistry->getRepository(PageSection::class)->findAll() as $section) {
             $sectionType = array_search($section->getType(), PageSection::getAvailableSectionType());
             if (!array_key_exists($sectionType, $dataSectionMenu)) {
                 $url = $this->adminUrlGenerator
