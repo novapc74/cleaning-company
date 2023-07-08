@@ -1,23 +1,18 @@
 .advantages-section {
   &__advantages {
-    padding-top: 20px;
     border-top: 1px solid $grey;
-    @media screen and (min-width: 1280px) {
-      padding-top: 40px;
-    }
-    @media screen and (min-width: 1600px) {
-      padding-top: 45px;
-    }
   }
   &__advantage {
     width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-bottom: 1px solid $grey;
     @media screen and (min-width: 1280px) {
       gap: 0;
+      padding-top: 45px;
       padding-bottom: 45px;
     }
   }

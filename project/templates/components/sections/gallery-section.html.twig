@@ -4,30 +4,11 @@
             <div class="gallery-slider__inner">
                 <div class="swiper gallery-slider__swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
-                        <div class="swiper-slide gallery-slider__slide">
-                            <img src="{{ asset('build/images/gallery-slide-1.jpg') }}" alt="gallery">
-                        </div>
+                        {% for item in gallery %}
+                            <div class="swiper-slide gallery-slider__slide">
+                                <img src="{{ vich_uploader_asset(item.image,'imageFile') }}" alt="">
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

@@ -11,93 +11,78 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 class Gallery
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+	#[ORM\Id]
+	#[ORM\GeneratedValue]
+	#[ORM\Column]
+	private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $type = 0;
+	#[ORM\Column(nullable: true)]
+	private ?int $type = 0;
 
-    #[ORM\ManyToOne(targetEntity: Media::class, cascade: ['persist'])]
-    private ?Media $image = null;
+	#[ORM\ManyToOne(targetEntity: Media::class, cascade: ['persist'])]
+	private ?Media $image = null;
 
-    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'gallery')]
-    private ?PageSection $pageSection = null;
+	#[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'gallery')]
+	private ?PageSection $pageSection = null;
 
-    #[ORM\ManyToOne(targetEntity: Review::class, cascade: ['persist'], inversedBy: 'image')]
-    private ?Review $review = null;
+	private const DEFAULT_TYPE = 0;
+	private const ABOUT_PAGE_TYPE = 1;
 
-    private const DEFAULT_TYPE = 0;
-    private const ABOUT_PAGE_TYPE = 1;
+	#[ArrayShape([
+		'По умолчанию' => 'integer',
+		'О нас' => 'integer',
+	])]
+	public static function getAvailableGalleryType(): array
+	{
+		return [
+			'По умолчанию' => self::DEFAULT_TYPE,
+			'О нас' => self::ABOUT_PAGE_TYPE,
+		];
+	}
 
-    #[ArrayShape([
-        'По умолчанию' => 'integer',
-        'О нас' => 'integer',
-    ])]
-    public static function getAvailableGalleryType(): array
-    {
-        return [
-            'По умолчанию' => self::DEFAULT_TYPE,
-            'О нас' => self::ABOUT_PAGE_TYPE,
-        ];
-    }
+	public function getId(): ?int
+	{
+		return $this->id;
+	}
 
-    public function __toString(): string
-    {
-        return $this->type ?? $this->id;
-    }
+	public function getType(): ?int
+	{
+		return $this->type;
+	}
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+	public function setType(int $type): static
+	{
+		$this->type = $type;
 
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
+		return $this;
+	}
 
-    public function setType(int $type): static
-    {
-        $this->type = $type;
+	public function getImage(): ?Media
+	{
+		return $this->image;
+	}
 
-        return $this;
-    }
+	public function setImage(?Media $image): static
+	{
+		$this->image = $image;
 
-    public function getImage(): ?Media
-    {
-        return $this->image;
-    }
+		return $this;
+	}
 
-    public function setImage(?Media $image): static
-    {
-        $this->image = $image;
+	public function getPageSection(): ?PageSection
+	{
+		return $this->pageSection;
+	}
 
-        return $this;
-    }
+	public function setPageSection(?PageSection $pageSection): static
+	{
+		$this->pageSection = $pageSection;
 
-    public function getPageSection(): ?PageSection
-    {
-        return $this->pageSection;
-    }
+		return $this;
+	}
 
-    public function setPageSection(?PageSection $pageSection): static
-    {
-        $this->pageSection = $pageSection;
-
-        return $this;
-    }
-
-    public function getReview(): ?Review
-    {
-        return $this->review;
-    }
-
-    public function setReview(?Review $review): static
-    {
-        $this->review = $review;
-
-        return $this;
-    }
+	public function __toString(): string
+	{
+		return $this->type ?? $this->id;	// TODO: Implement __toString() method.
+	}
 }

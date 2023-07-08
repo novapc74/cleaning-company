@@ -29,17 +29,17 @@ export default function swipers() {
             nextEl: '.cases-swiper__btn_next',
             prevEl: '.cases-swiper__btn_prev',
         },
-        breakpoint: {
+        breakpoints: {
             768: {
                 slidesPerView: 2,
             },
             1280: {
+                spaceBetween: 20,
                 slidesPerView: 2,
-                spaceBetween: 20
             },
             1600: {
+                spaceBetween: 60,
                 slidesPerView: 2,
-                spaceBetween: 60
             },
         }
     })
@@ -62,9 +62,23 @@ export default function swipers() {
                 spaceBetween: 50
             },
             1600: {
-                slidesPerView: 3,
                 spaceBetween: 60
             },
+        }
+    })
+
+    const clientsSwiper = new Swiper('.clients-section__swiper', {
+        slidesPerView: 4,
+        speed: 500,
+        spaceBetween: 15,
+        grid: {
+            fill: 'row',
+            rows: 2
+        },
+        breakpoints: {
+            1280: {
+                spaceBetween: 30,
+            }
         }
     })
 }

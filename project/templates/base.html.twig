@@ -14,6 +14,9 @@
 
 </head>
 <body>
+
+{% set isHome = isHome | default(false) %}
+
 {% block header %}
     {% include 'header.html.twig' %}
 {% endblock %}
@@ -29,6 +32,6 @@
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
-
+<script src="https://api-maps.yandex.ru/2.1/?apikey=&amp;lang=ru_RU" type="text/javascript"></script>
 </body>
 </html>

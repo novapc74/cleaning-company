@@ -7,41 +7,56 @@
 {# @var image \App\Entity\Media #}
 {# @var gallery \App\Entity\Gallery #}
 
-
 {% extends 'base.html.twig' %}
 
 {% block title %}СПКК{% endblock %}
 {% block description %}Санкт-Петербургская клининговая компания{% endblock %}
 
 {% block content %}
-    {% include 'components/sections/hero-section.html.twig' %}
-    {% include 'components/sections/about-section.html.twig' %}
-    {% include 'components/sections/gallery-section.html.twig' %}
-    {% include 'components/sections/services-section.html.twig' %}
-    {% include 'components/sections/steps-section.html.twig' %}
-    {% include 'components/sections/faq-section.html.twig' %}
+    <main class="main home-page">
+        {#    главный баннер #}
+        {% include 'components/sections/hero-section.html.twig' %}
 
-    {% if about_us is not null %}
-        {{ about_us.title ?? '' }}
-        {{ about_us.description ?? '' }}
-    {% endif %}
+        {#    секция "О нас" #}
+        {% if about_us | length %}
+            {% include 'components/sections/about-section.html.twig' with { section: about_us } %}
+            {% if about_us.gallery | length %}
+                {% include 'components/sections/gallery-section.html.twig' with { gallery: about_us.gallery } %}
+            {% endif %}
+        {% endif %}
 
-    <!-- Пример использования однотипных секций -->
-    {% for about in about_collection %}
-        {{ about.title ?? '' }}
-        {{ about.description | raw }}
-        <!-- Пример использования галереи, даже, если картинка одна!!! -->
-        {% for item in about.gallery %}
-            <!-- фильтры брать с project/config/packages/liip_images.yaml -->
-            <img src="{{ vich_uploader_asset(item.image, 'imageFile') | imagine_filter_cache('banner_md') }}"
-                 alt="{{ about.title ?? 'фото' }}">
-        {% endfor %}
-    {% endfor %}
+        {#    секция "Наши услуги" #}
+        {% if services_collection | length %}
+            {% include 'components/sections/services-section.html.twig' with { services: services_collection } %}
+        {% endif %}
 
-    {% for gallery in gallery_collection %}
-        <!-- фильтры брать с project/config/packages/liip_images.yaml -->
-        <img src="{{ vich_uploader_asset(gallery.image, 'imageFile') | imagine_filter_cache('banner_md') }}"
-             alt="фото галереи - {{ gallery.id }}">
-    {% endfor %}
+        {#    секция "Преимущества" #}
+        {% if advantages_collection | length %}
+            {% include 'components/sections/advantages-section.html.twig' with { advantages: advantages_collection } %}
+        {% endif %}
 
+        {#    секция "Как мы работаем" #}
+        {% if how_it_works_collection | length %}
+            {% include 'components/sections/steps-section.html.twig' with { steps: how_it_works_collection } %}
+        {% endif %}
+
+        {#    секция "Ответы на часто задаваемые вопросы" #}
+        {% if question_answer_collection | length %}
+            {% include 'components/sections/faq-section.html.twig' with { faq: question_answer_collection } %}
+        {% endif %}
+
+        {#    секция "Наши проекты" #}
+        {#    {% if cases_collection | length %} #}
+        {% set cases = [ { title: 'СберБанк', description: '2023 г', image: asset('build/images/case-1.jpg') }, { title: 'Ozon', description: '2023 г', image: asset('build/images/case-2.jpg') }, { title: 'СберБанк', description: '2023 г', image: asset('build/images/case-1.jpg') }, { title: 'Ozon', description: '2023 г', image: asset('build/images/case-2.jpg') } ] %}
+        {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases } %}
+        {#    {% endif %} #}
+
+        {#    секция "Наша география" #}
+        {% include 'components/sections/geography-section.html.twig' %}
+
+        {#    секция "Наши партнеры" #}
+        {% include 'components/sections/clients-section.html.twig' %}
+
+        {% include 'components/sections/form-section.html.twig' %}
+    </main>
 {% endblock %}

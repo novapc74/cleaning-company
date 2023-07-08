@@ -1,18 +1,28 @@
 {% set theme = theme | default('base') %}
-<section class="base-section{% if theme == 'grey'%} base-section_grey{% endif%} swiper-section">
+<section class="base-section{% if theme == 'grey'%} base-section_grey{% endif %} swiper-section">
     <div class="container">
-        <div class="swiper-section__header">
+        <div class="base-section__header swiper-section__header">
             <h2 class="base-section__title">{{ title }}</h2>
             <div class="swiper-section__navigation">
-                <div class="swiper-section__btn swiper-section__btn_prev {{ type }}-swiper__btn_prev"></div>
-                <div class="swiper-section__btn swiper-section__btn_next {{ type }}-swiper__btn_next"></div>
+                <div class="swiper-section__btn swiper-section__btn_prev {{ type }}-swiper__btn_prev">
+                    <svg>
+                        <use xlink:href="{{ asset('build/images/svg/sprite.svg') }}#arrow-right"></use>
+                    </svg>
+                </div>
+                <div class="swiper-section__btn swiper-section__btn_next {{ type }}-swiper__btn_next">
+                    <svg>
+                        <use xlink:href="{{ asset('build/images/svg/sprite.svg') }}#arrow-right"></use>
+                    </svg>
+                </div>
             </div>
         </div>
         <div class="swiper swiper-section__swiper {{ type }}-swiper">
             <div class="swiper-wrapper">
                 {% for slide in slides %}
                     <div class="swiper-slide {{ type }}-swiper__slide">
-
+                        {% if type == 'cases' %}
+                            {% include 'components/slides/case-slide.html.twig' with { case: slide } %}
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

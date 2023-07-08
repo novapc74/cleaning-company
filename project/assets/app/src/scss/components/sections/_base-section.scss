@@ -10,7 +10,6 @@
     padding-bottom: 120px;
   }
 
-
   &__title {
     @include title-4;
     color: $orange;
@@ -20,6 +19,17 @@
       margin-bottom: 50px;
     }
   }
+
+  &__header {
+    margin-bottom: 30px;
+    @media screen and (min-width: 1280px) {
+      margin-bottom: 50px;
+    }
+  }
+  &__header &__title {
+    margin-bottom: 0;
+  }
+
   &__text {
     @include text-16-18;
     color: $brown_light;
@@ -50,7 +60,7 @@
       margin-left: 25px;
     }
 
-    b {
+    strong {
       color: $orange;
       font-weight: 400;
     }

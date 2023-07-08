@@ -1,13 +1,13 @@
 <section class="base-section about-section" id="about">
     <div class="container">
         <div class="about-section__heading">
-            Комплексное решение для коммерческого клининга
+            {{ section.title }}
         </div>
         <div class="about-section__body">
             <h2 class="base-section__title">О нас</h2>
-            <p class="base-section__text about-section__description">
-                Наша цель&nbsp;&mdash; обеспечить клиентам чистоту и&nbsp;комфорт в&nbsp;их&nbsp;рабочем пространстве, создавая привлекательную и&nbsp;здоровую среду для работы, повышая производительность сотрудников и&nbsp;укрепляя их&nbsp;доверие к&nbsp;нам как надежному партнеру в&nbsp;поддержке и&nbsp;поддержке уборки офисов.
-            </p>
+            <div class="base-section__text about-section__description">
+                {{ section.description | raw }}
+            </div>
         </div>
         <ul class="about-section__numbers">
             <li class="about-section__number about-number">

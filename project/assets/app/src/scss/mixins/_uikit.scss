@@ -86,6 +86,11 @@
       }
     }
   }
+  &.swiper-button-disabled {
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
 
 // links

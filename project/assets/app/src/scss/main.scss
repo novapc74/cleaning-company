@@ -17,6 +17,9 @@
 @import "components/base/header";
 @import "components/base/footer";
 
+// страницы
+@import "pages/policy";
+
 // секции страницы
 @import "components/sections/hero-section";
 @import "components/sections/about-section";
@@ -24,6 +27,7 @@
 @import "components/sections/services-section";
 @import "components/sections/swiper-section";
 @import "components/sections/advantages-section";
+@import "components/sections/clients-section";
 
 // слайды
 @import "components/slides/review-slide";
