@@ -15,44 +15,49 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class PageSectionCrudController extends AbstractCrudController
 {
-	public function configureCrud(Crud $crud): Crud
-	{
-		return $crud
-			->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
-	}
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('секцию')
+            ->setPageTitle(CRUD::PAGE_NEW, 'Создать новую секцию')
+            ->setPageTitle(CRUD::PAGE_EDIT, "Редактировать секцию")
+            ->setEntityLabelInPlural('Секции')
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
 
-	public static function getEntityFqcn(): string
-	{
-		return PageSection::class;
-	}
+    }
 
-	public function configureFields(string $pageName): iterable
-	{
-		return [
+    public static function getEntityFqcn(): string
+    {
+        return PageSection::class;
+    }
+
+    public function configureFields(string $pageName): iterable
+    {
+        return [
             FormField::addTab('Основное'),
-			TextField::new('title', 'Заголовок')
-				->setColumns('col-sm-6 col-lg-5 col-xxl-3')
-				->setTextAlign('center')
-			,
-			ChoiceField::new('type', 'Тип страницы')
-				->setChoices(PageSection::getAvailableSectionType())
-				->setTextAlign('center')
-				->setColumns('col-sm-6 col-lg-5 col-xxl-3')
-			,
-			FormField::addRow(),
-			TextEditorField::new('description', 'Описание')
-				->setFormType(CKEditorType::class)
+            TextField::new('title', 'Заголовок')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
+                ->setTextAlign('center')
+            ,
+            ChoiceField::new('type', 'Тип страницы')
+                ->setChoices(PageSection::getAvailableSectionType())
+                ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
+            ,
+            FormField::addRow(),
+            TextEditorField::new('description', 'Описание')
+                ->setFormType(CKEditorType::class)
                 ->setTextAlign('center')
                 ->setColumns('col-sm-12 col-lg-10 col-xxl-6')
-			,
+            ,
             FormField::addTab('Изображения'),
-			TextField::new('image', 'Файлы')
-				->onlyOnIndex()
-				->setTemplatePath('admin/crud/assoc_gallery.html.twig')
-			,
-			CollectionField::new('gallery', 'Картинки')
-				->setEntryType(GalleryType::class)
-				->onlyOnForms()
-		];
-	}
+            TextField::new('image', 'Файлы')
+                ->onlyOnIndex()
+                ->setTemplatePath('admin/crud/assoc_gallery.html.twig')
+            ,
+            CollectionField::new('gallery', 'Картинки')
+                ->setEntryType(GalleryType::class)
+                ->onlyOnForms()
+        ];
+    }
 }

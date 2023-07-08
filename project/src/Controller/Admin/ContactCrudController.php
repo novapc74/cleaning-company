@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Contact;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -16,6 +17,15 @@ class ContactCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Contact::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular(fn(?Contact $contact) => $contact?->getEmail() ?: 'контакт')
+            ->setPageTitle(CRUD::PAGE_NEW, 'Создать новый контакт')
+            ->setPageTitle(CRUD::PAGE_EDIT, fn(?Contact $contact) => "Редактировать: \"{$contact->getEmail()}\"")
+            ->setEntityLabelInPlural('Контакты');
     }
 
     public function configureFields(string $pageName): iterable
@@ -40,7 +50,9 @@ class ContactCrudController extends AbstractCrudController
                     'by_reference' => false,
                 ])
                 ->setTextAlign('center')
-                ->setColumns('col-sm-6 col-lg-5 col-xxl-3'),
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
+            ->setTemplatePath('admin/crud/assoc_description.html.twig')
+            ,
             FormField::addRow(),
             TextareaField::new('address', 'Адрес')
                 ->setTextAlign('center')

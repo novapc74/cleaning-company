@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Gallery;
 use App\Form\Admin\MediaFormType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -15,6 +16,15 @@ class GalleryCrudController extends AbstractCrudController
 	{
 		return Gallery::class;
 	}
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Изображение')
+            ->setPageTitle(CRUD::PAGE_NEW, 'Загрузить новое изображение')
+            ->setPageTitle(CRUD::PAGE_EDIT, "Обновить изображение")
+            ->setEntityLabelInPlural('Галерея');
+    }
 
 	public function configureFields(string $pageName): iterable
 	{

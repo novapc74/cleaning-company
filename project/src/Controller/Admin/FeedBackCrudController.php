@@ -24,7 +24,7 @@ class FeedBackCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Сообщение')
+            ->setEntityLabelInSingular('сообщение')
             ->setEntityLabelInPlural('Сообщения')
             ->setPageTitle('new', 'Создать новое сообщение')
             ->setPageTitle('edit', fn(FeedBack $feedBack) => sprintf('Редактировать сообщение от %s', $feedBack->getName()));

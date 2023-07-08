@@ -21,7 +21,7 @@ class ReviewCrudController extends AbstractCrudController
 	public function configureCrud(Crud $crud): Crud
 	{
 		return $crud
-			->setEntityLabelInSingular('Отзыв')
+			->setEntityLabelInSingular('отзыв')
 			->setEntityLabelInPlural('Отзывы')
 			->setPageTitle('new', 'Создать новый отзыв')
 			->setPageTitle('edit', fn(Review $review) => sprintf('Редактировать отзыв от %s', $review->getName()));
