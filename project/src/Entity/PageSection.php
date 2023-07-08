@@ -29,16 +29,18 @@ class PageSection
     #[ORM\Column(nullable: false)]
     private ?string $type = null;
 
-	private const ABOUT_TYPE = 5;
-	private const WORK_TYPE = 1;
-	private const QUESTION_TYPE = 2;
+    private const WORK_TYPE = 1;
+    private const QUESTION_TYPE = 2;
+    private const SERVICE_TYPE = 3;
 
-	private const SERVICE_TYPE = 3;
+    private const ADVANTAGE_TYPE = 4;
 
-	private const ADVANTAGE_TYPE = 4;
+    private const ABOUT_TYPE = 5;
+    private const ABOUT_US_TYPE = 6;
 
-	#[ArrayShape([
+    #[ArrayShape([
 		'О нас' => 'integer',
+        'Верхний блок "О нас"' => 'integer',
 		'Как мы работаем' => 'integer',
 		'Вопрос - ответ' => 'integer',
 		'Наши услуги' => 'integer',
@@ -48,6 +50,7 @@ class PageSection
 	{
 		return [
 			'О нас' => self::ABOUT_TYPE,
+            'Верхний блок "О нас"' => self::ABOUT_US_TYPE,
 			'Как мы работаем' => self::WORK_TYPE,
 			'Вопрос - ответ' => self::QUESTION_TYPE,
 			'Наши услуги' => self::SERVICE_TYPE,

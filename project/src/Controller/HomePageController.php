@@ -14,6 +14,7 @@ class HomePageController extends AbstractController
     public function index(PageSectionRepository $pageSectionRepository, GalleryRepository $galleryRepository): Response
     {
         return $this->render('pages/home.html.twig', [
+            'about_us' => $pageSectionRepository->findOneBy(['type' => 6]),
 	        'about_collection' => $pageSectionRepository->findBy(['type' => 5]),
 	        'how_it_works_collection' => $pageSectionRepository->findBy(['type' => 1]),
 	        'question_answer_collection' => $pageSectionRepository->findBy(['type' => 2]),

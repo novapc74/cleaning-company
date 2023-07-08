@@ -1,4 +1,5 @@
 {# @var about \App\Entity\PageSection #}
+{# @var about_us \App\Entity\PageSection #}
 {# @var how_it_works \App\Entity\PageSection #}
 {# @var question_answer \App\Entity\PageSection #}
 {# @var services \App\Entity\PageSection #}
@@ -20,27 +21,27 @@
     {% include 'components/sections/steps-section.html.twig' %}
     {% include 'components/sections/faq-section.html.twig' %}
 
+    {% if about_us is not null %}
+        {{ about_us.title ?? '' }}
+        {{ about_us.description ?? '' }}
+    {% endif %}
 
     <!-- Пример использования однотипных секций -->
     {% for about in about_collection %}
+        {{ about.title ?? '' }}
+        {{ about.description | raw }}
         <!-- Пример использования галереи, даже, если картинка одна!!! -->
-        {% if about.gallery is defined %}
-            {% for item in about.gallery %}
-                <!-- фильтры брать с project/config/packages/liip_images.yaml -->
-                <img src="{{ vich_uploader_asset(item.image, 'imageFile') | imagine_filter_cache('banner_md') }}"
-                     alt="">
-            {% endfor %}
-        {% endif %}
+        {% for item in about.gallery %}
+            <!-- фильтры брать с project/config/packages/liip_images.yaml -->
+            <img src="{{ vich_uploader_asset(item.image, 'imageFile') | imagine_filter_cache('banner_md') }}"
+                 alt="{{ about.title ?? 'фото' }}">
+        {% endfor %}
     {% endfor %}
 
-{#
-
-{% for gallery in gallery_collection %}
-    <!-- фильтры брать с project/config/packages/liip_images.yaml -->
-    <img src="{{ vich_uploader_asset(gallery.image, 'imageFile') | imagine_filter_cache('banner_md') }}"
-         alt="">
-{% endfor %}
-
-#}
+    {% for gallery in gallery_collection %}
+        <!-- фильтры брать с project/config/packages/liip_images.yaml -->
+        <img src="{{ vich_uploader_asset(gallery.image, 'imageFile') | imagine_filter_cache('banner_md') }}"
+             alt="фото галереи - {{ gallery.id }}">
+    {% endfor %}
 
 {% endblock %}
