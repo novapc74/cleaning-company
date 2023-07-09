@@ -12,7 +12,7 @@ import './app/src/scss/main.scss';
 
 
 // start the Stimulus application
-// import './bootstrap';
+import './bootstrap';
 
 function requireAll(r) {
     r.keys().forEach(r);
