@@ -17,31 +17,31 @@ class FeedbackController extends AbstractController
     {
     }
 
-//    #[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
-//	public function index(Request $request, ManagerRegistry $managerRegistry): Response
-//	{
+    #[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
+	public function index(Request $request, ManagerRegistry $managerRegistry): Response
+	{
 //		if (!$request->isXmlHttpRequest()) {
 //			return $this->redirectToRoute('app_home_page');
 //		}
-//
-//		$feedBack = new Feedback();
-//		$form     = $this->createForm(FeedbackFormType::class, $feedBack);
-//
-//		$form->handleRequest($request);
-//		if ($form->isSubmitted() && $form->isValid()) {
-//			$feedBack = $form->getData();
-//
-//			$em = $managerRegistry->getManager();
-//			$em->persist($feedBack);
-//			$em->flush();
-//
-//			return new Response(true, 201);
-//		}
-//
-//		return $this->render("feedback/form.html.twig", [
-//			'feedbackForm' => $form->createView(),
-//		]);
-//	}
+
+		$feedBack = new Feedback();
+		$form     = $this->createForm(FeedbackFormType::class, $feedBack);
+
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+			$feedBack = $form->getData();
+
+			$em = $managerRegistry->getManager();
+			$em->persist($feedBack);
+			$em->flush();
+
+			return new Response(true, 201);
+		}
+
+		return $this->render("feedback/form.html.twig", [
+			'feedbackForm' => $form->createView(),
+		]);
+	}
 
     #[Route('/feedback_header', name: 'app_feedback_header', methods: ['POST'])]
     public function setHeaderFeedback(Request $request): Response
