@@ -25,6 +25,10 @@ class Gallery
 	#[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'gallery')]
 	private ?PageSection $pageSection = null;
 
+    #[ORM\ManyToOne(targetEntity: Review::class, cascade: ['persist'], inversedBy: 'image')]
+    private ?Review $review = null;
+
+
 	private const DEFAULT_TYPE = 0;
 	private const ABOUT_PAGE_TYPE = 1;
 
@@ -44,6 +48,11 @@ class Gallery
 	{
 		return $this->id;
 	}
+
+    public function __toString(): string
+    {
+        return $this->type ?? $this->id;	// TODO: Implement __toString() method.
+    }
 
 	public function getType(): ?int
 	{
@@ -81,8 +90,15 @@ class Gallery
 		return $this;
 	}
 
-	public function __toString(): string
-	{
-		return $this->type ?? $this->id;	// TODO: Implement __toString() method.
-	}
+    public function getReview(): ?Review
+    {
+        return $this->review;
+    }
+
+    public function setReview(?Review $review): static
+    {
+        $this->review = $review;
+
+        return $this;
+    }
 }

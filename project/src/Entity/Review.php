@@ -104,7 +104,7 @@ class Review
     /**
      * @return Collection<int, Gallery>
      */
-    public function getImage(): Collection
+    public function getImage(): ?Collection
     {
         return $this->image;
     }
