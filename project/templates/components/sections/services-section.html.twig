@@ -12,11 +12,10 @@
                         <div class="base-section__content service__content">
                             {{ item.description | raw }}
                         </div>
-                        {% for image in item.gallery %}
-                            <div class="service__image{% if bottom %} service__image_bottom{% endif %}">
-                                <img src="{{ vich_uploader_asset(image.image,'imageFile') }}" alt="{{ item.title }}">
-                            </div>
-                        {% endfor %}
+                        <div class="service__image{% if bottom %} service__image_bottom{% endif %}">
+                            <img src="{{ vich_uploader_asset(item.gallery[0].image,'imageFile') }}"
+                                 alt="{{ item.title }}">
+                        </div>
                     </div>
                 </li>
             {% endfor %}

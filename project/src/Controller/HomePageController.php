@@ -21,6 +21,7 @@ class HomePageController extends AbstractController
 	        'services_collection' => $pageSectionRepository->findBy(['type' => 3]),
 	        'advantages_collection' => $pageSectionRepository->findBy(['type' => 4]),
 	        'gallery_collection' => $galleryRepository->findBy(['type' => 1]),
+            'cases_collection' => $pageSectionRepository->findBy(['type' => 7]),
         ]);
     }
 }

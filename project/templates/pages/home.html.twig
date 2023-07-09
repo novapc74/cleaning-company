@@ -46,10 +46,14 @@
         {% endif %}
 
         {#    секция "Наши проекты" #}
-        {#    {% if cases_collection | length %} #}
-        {% set cases = [ { title: 'СберБанк', description: '2023 г', image: asset('build/images/case-1.jpg') }, { title: 'Ozon', description: '2023 г', image: asset('build/images/case-2.jpg') }, { title: 'СберБанк', description: '2023 г', image: asset('build/images/case-1.jpg') }, { title: 'Ozon', description: '2023 г', image: asset('build/images/case-2.jpg') } ] %}
-        {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases } %}
-        {#    {% endif %} #}
+        {% if cases_collection | length %}
+            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases_collection } %}
+        {% endif %}
+
+        {#    секция "Отзывы" #}
+{#        {% if cases_collection | length %}#}
+{#            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases_collection } %}#}
+{#        {% endif %}#}
 
         {#    секция "Наша география" #}
         {% include 'components/sections/geography-section.html.twig' %}
