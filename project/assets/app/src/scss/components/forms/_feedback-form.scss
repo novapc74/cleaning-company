@@ -82,6 +82,7 @@
   }
 
   &__btn {
+    width: 100%;
     @include orange-button;
     margin-top: 25px;
     & ~ .error-input-message {

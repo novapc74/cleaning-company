@@ -53,7 +53,7 @@ export default function swipers() {
             nextEl: '.reviews-swiper__btn_next',
             prevEl: '.reviews-swiper__btn_prev',
         },
-        breakpoint: {
+        breakpoints: {
             768: {
                 slidesPerView: 2,
             },
@@ -62,6 +62,7 @@ export default function swipers() {
                 spaceBetween: 50
             },
             1600: {
+                slidesPerView: 3,
                 spaceBetween: 60
             },
         }

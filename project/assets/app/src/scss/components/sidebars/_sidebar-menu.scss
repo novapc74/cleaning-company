@@ -1,0 +1,40 @@
+@import "../../mixins";
+.sidebar-menu {
+  color: $brown;
+  .sidebar__inner {
+    max-width: 280px;
+    @media screen and (min-width: 768px) {
+      max-width: 315px;
+    }
+  }
+
+  & &__body {
+    position: relative;
+    opacity: 1;
+    user-select: auto;
+    pointer-events: auto;
+  }
+
+  &__list {
+    margin-bottom: 50px;
+  }
+
+  &__item {
+    @include title-4-500;
+    margin-bottom: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__phone {
+    display: block;
+    @include title-4;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  &__btn {
+    width: 100%;
+    @include orange-button;
+  }
+}

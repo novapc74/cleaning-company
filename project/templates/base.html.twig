@@ -1,3 +1,5 @@
+{# @var contact \App\Entity\Contact #}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -16,21 +18,25 @@
 <body>
 
 {% set isHome = isHome | default(false) %}
+{% set contact = contacts() %}
 
-{% block header %}
-    {% include 'header.html.twig' %}
-{% endblock %}
+<div class="scroll-container">
+    {% block header %}
+        {% include 'header.html.twig' %}
+    {% endblock %}
 
-{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
-{% block footer %}
-    {% include 'footer.html.twig' %}
-{% endblock %}
+    {% block footer %}
+        {% include 'footer.html.twig' %}
+    {% endblock %}
 
+    {% include 'components/sidebars/base-sidebar.html.twig' %}
 
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</div>
 
 <script src="https://api-maps.yandex.ru/2.1/?apikey=&amp;lang=ru_RU" type="text/javascript"></script>
 </body>

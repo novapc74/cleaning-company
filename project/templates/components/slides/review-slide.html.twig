@@ -1,17 +1,17 @@
 <div class="review-slide">
     <div class="review-slide__image">
-        <img src="{{ vich_uploader_asset(item.image, 'imageFile') | imagine_filter_cache('banner_md') }}" alt="{{ review.name }}">
+        <img src="{{ vich_uploader_asset(review.image[1].image, 'imageFile') }}" alt="{{ review.name }}">
     </div>
-    <p class="review-slide__text">
-        {{ review.text }}
-    </p>
+    <div class="review-slide__text">
+        {{ review.comment | raw }}
+    </div>
     <div class="review-slide__bottom">
         <div class="review-slide__avatar">
-            <img src="{{ vich_uploader_asset(item.image, 'imageFile') | imagine_filter_cache('banner_md') }}" alt="{{ review.avatar }}">
+            <img src="{{ vich_uploader_asset(review.image[0].image, 'imageFile') }}" alt="{{ review.name }}">
         </div>
         <div class="review-slide__info">
             <div class="review-slide__name">{{ review.name }}</div>
-            <div class="review-slide__status">{{ review.status }}</div>
+            <div class="review-slide__status">{{ review.position }}</div>
         </div>
     </div>
 </div>

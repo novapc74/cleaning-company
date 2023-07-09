@@ -26,8 +26,11 @@
     },
     "dependencies": {
         "axios": "^1.4.0",
+        "gsap": "^3.12.2",
         "inputmask": "^5.0.8",
         "just-validate": "^4.2.0",
-        "swiper": "^9.4.1"
+        "locomotive-scroll": "^4.1.4",
+        "swiper": "^9.4.1",
+        "video.js": "^8.3.0"
     }
 }

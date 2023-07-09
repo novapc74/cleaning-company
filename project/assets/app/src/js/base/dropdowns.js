@@ -2,6 +2,13 @@ import {addClass, removeClass} from "../functions/classMethods";
 
 export default function dropdowns() {
 
+    const dropdowns = [...document.querySelectorAll('.base-dropdown')]
+    dropdowns && dropdowns.forEach(item => {
+        const content = item.querySelector('.base-dropdown__inner'),
+            contentHeight = item.querySelector('.base-dropdown__content').offsetHeight
+        content.style = `--height:${contentHeight}px`
+    })
+
     document.addEventListener('click', (evt) => {
         const target = evt.target
         if (target.closest('[data-open-dropdown]')) {

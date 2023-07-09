@@ -33,6 +33,7 @@
     @include text-14;
     color: $white;
     margin-bottom: 15px;
+    opacity: 0;
     @media screen and (min-width: 768px) {
       @include title-3;
     }
@@ -49,6 +50,7 @@
     color: $white;
     text-shadow: 0 4px 4px 0 rgba(189, 189, 189, 0.25);
     margin-bottom: 25px;
+    opacity: 0;
     @media screen and (min-width: 768px) {
       @include title-2;
       max-width: 734px;

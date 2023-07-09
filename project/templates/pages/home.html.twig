@@ -31,6 +31,9 @@
             {% include 'components/sections/services-section.html.twig' with { services: services_collection } %}
         {% endif %}
 
+        {#    секция с видео #}
+        {% include 'components/sections/video-section.html.twig' with { video: asset('build/video/SpCC.mp4'), id: 'spcc-video' } %}
+
         {#    секция "Преимущества" #}
         {% if advantages_collection | length %}
             {% include 'components/sections/advantages-section.html.twig' with { advantages: advantages_collection } %}
@@ -41,26 +44,26 @@
             {% include 'components/sections/steps-section.html.twig' with { steps: how_it_works_collection } %}
         {% endif %}
 
-        {#    секция "Ответы на часто задаваемые вопросы" #}
-        {% if question_answer_collection | length %}
-            {% include 'components/sections/faq-section.html.twig' with { faq: question_answer_collection } %}
-        {% endif %}
-
         {#    секция "Наши проекты" #}
         {% if cases_collection | length %}
             {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases_collection } %}
         {% endif %}
 
         {#    секция "Отзывы" #}
-{#        {% if cases_collection | length %}#}
-{#            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases_collection } %}#}
-{#        {% endif %}#}
+        {% if reviews | length %}
+            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'reviews', title: 'Отзывы', slides: reviews } %}
+        {% endif %}
 
         {#    секция "Наша география" #}
         {% include 'components/sections/geography-section.html.twig' %}
 
         {#    секция "Наши партнеры" #}
         {% include 'components/sections/clients-section.html.twig' %}
+
+        {#    секция "Ответы на часто задаваемые вопросы" #}
+        {% if question_answer_collection | length %}
+            {% include 'components/sections/faq-section.html.twig' with { faq: question_answer_collection } %}
+        {% endif %}
 
         {% include 'components/sections/form-section.html.twig' %}
     </main>

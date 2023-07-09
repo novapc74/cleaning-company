@@ -22,6 +22,8 @@
                     <div class="swiper-slide {{ type }}-swiper__slide">
                         {% if type == 'cases' %}
                             {% include 'components/slides/case-slide.html.twig' with { case: slide } %}
+                        {% elseif type == 'reviews' %}
+                            {% include 'components/slides/review-slide.html.twig' with { review: slide } %}
                         {% endif %}
                     </div>
                 {% endfor %}

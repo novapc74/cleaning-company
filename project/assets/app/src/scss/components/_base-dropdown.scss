@@ -10,6 +10,7 @@
     padding-bottom: 26px;
     border-bottom: 1px solid $grey;
     transition: border-color .4s ease;
+
     @media screen and (min-width: 768px) {
       padding-top: 24px;
       padding-bottom: 18px;
@@ -48,18 +49,25 @@
   &__title {
 
   }
+  &__content {
+    @include text-14-16;
+    color: $brown;
+    @media screen and (min-width: 1280px) {
+      font-size: 18px;
+    }
+  }
 
   &__btn {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     position: relative;
-    transition: transform .4s ease;
+    transition: transform .4s ease, border-color .4s ease;
     border: 1px solid transparent;
+    border-radius: 50%;
     flex-shrink: 0;
-
     &::before, &::after {
       content: '';
-      width: 100%;
+      width: 75%;
       height: 1px;
       background-color: $orange;
       position: absolute;
@@ -75,9 +83,7 @@
 
     @media screen and (min-width: 1280px) {
       &:hover {
-        &::before, &::after {
-          border-color: $orange;
-        }
+        border-color: $orange;
       }
     }
   }
@@ -111,12 +117,10 @@
 
   &.active &__inner {
     opacity: 1;
-    max-height: 350px;
-    @media screen and (min-width: 768px) {
-      max-height: 120px;
-    }
-    @media screen and (min-width: 1280px) {
-      max-height: 170px;
-    }
+    max-height: var(--height);
+  }
+
+  &:first-child &__header {
+    padding-top: 0;
   }
 }

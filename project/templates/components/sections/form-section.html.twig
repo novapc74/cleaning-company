@@ -8,9 +8,9 @@
                 </p>
             </div>
             <div class="form-section__wrapper">
-                {#            <div {{ stimulus_controller('feed-back', {'url': path('app_feedback'), 'identifier': 'footer'}) }}>#}
-                {#                <div data-feed-back-target="form"></div>#}
-                {#            </div>#}
+{#                <div {{ stimulus_controller('feed-back', {'url': path('app_feedback'), 'identifier': 'footer'}) }}>#}
+{#                    <div data-feed-back-target="form"></div>#}
+{#                </div>#}
                 {% include 'forms/feedback-form.html.twig' with { position: 'footer' } %}
             </div>
         </div>

@@ -3,6 +3,8 @@
 
 // обнуление стилей
 @import "null";
+// locomotive scroll
+@import "locomotive-scroll";
 
 // базовые подключения
 @import "mixins";
@@ -17,6 +19,11 @@
 @import "components/base/header";
 @import "components/base/footer";
 @import "components/forms/feedback-form";
+@import "components/base/sidebar";
+
+// sidebars
+@import "components/sidebars/sidebar-menu";
+@import "components/sidebars/sidebar-feedback";
 
 // страницы
 @import "pages/policy";
@@ -30,6 +37,7 @@
 @import "components/sections/advantages-section";
 @import "components/sections/clients-section";
 @import "components/sections/form-section";
+@import "components/sections/video-section";
 
 // слайды
 @import "components/slides/review-slide";

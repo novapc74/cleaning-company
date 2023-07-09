@@ -1,0 +1,12 @@
+<div class="sidebar__body sidebar-feedback__body">
+    <h4 class="sidebar-feedback__title">
+        Оставить заявку
+    </h4>
+    <p class="sidebar-feedback__description">
+        Для консультации с нашим специалистом оставьте заявку в форме или свяжитесь любым удобным способом:
+    </p>
+    {% include 'forms/feedback-form.html.twig' with { position: 'sidebar' } %}
+{#    <div {{ stimulus_controller('feed-back', {'url': path('app_feedback'), 'identifier': 'footer'}) }}>#}
+{#        <div data-feed-back-target="form"></div>#}
+{#    </div>#}
+</div>

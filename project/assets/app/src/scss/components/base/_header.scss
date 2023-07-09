@@ -2,6 +2,11 @@
 @import '../../mixins';
 
 .header {
+  position: relative;
+  z-index: 150;
+  @media screen and (min-width: 1280px) {
+    position: unset;
+  }
   &__container {
     display: flex;
     align-items: center;

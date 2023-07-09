@@ -1,0 +1,39 @@
+.sidebar-feedback {
+
+  .sidebar__inner {
+    @media screen and (min-width: 1280px) {
+      max-width: 670px;
+    }
+  }
+
+  & &__body {
+    position: relative;
+    opacity: 1;
+    user-select: auto;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    @include title-4;
+    color: $orange;
+    margin-bottom: 20px;
+    @media screen and (min-width: 1280px) {
+      @include title-2;
+      margin-bottom: 25px;
+    }
+  }
+  &__description {
+    @include text-16-18;
+    color: $brown_light;
+    margin-bottom: 30px;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 75px;
+    }
+    @media screen and (min-width: 1280px) {
+      margin-bottom: 30px;
+    }
+  }
+}
