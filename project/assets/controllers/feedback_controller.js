@@ -15,7 +15,6 @@ export default class extends Controller {
         const params = new URLSearchParams({
             type: this.typeValue,
         });
-
         const response = await fetch(this.urlValue, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'

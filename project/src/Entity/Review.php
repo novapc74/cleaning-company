@@ -9,8 +9,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use mysql_xdevapi\TableInsert;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
@@ -33,12 +31,6 @@ class Review
     #[ORM\Column]
     private ?DateTimeImmutable $createdAt;
 
-    #[Assert\Count([
-        'min' => 2,
-        'max' => 2,
-        'minMessage' => 'Коллекция должна содержать ровно {{ limit }} изображение',
-        'maxMessage' => 'Коллекция должна содержать ровно {{ limit }} изображение',
-    ])]
     #[ORM\OneToMany(mappedBy: 'review', targetEntity: Gallery::class, cascade: ['persist', 'remove'])]
     private ?Collection $image;
 
