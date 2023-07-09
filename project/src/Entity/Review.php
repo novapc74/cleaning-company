@@ -31,16 +31,19 @@ class Review
     private ?string $comment = null;
 
     #[ORM\Column]
-    private ?DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt;
 
     #[Assert\Count([
-        'min' => 1,
-        'max' => 1,
+        'min' => 2,
+        'max' => 2,
         'minMessage' => 'Коллекция должна содержать ровно {{ limit }} изображение',
         'maxMessage' => 'Коллекция должна содержать ровно {{ limit }} изображение',
     ])]
     #[ORM\OneToMany(mappedBy: 'review', targetEntity: Gallery::class, cascade: ['persist', 'remove'])]
     private ?Collection $image;
+
+    #[ORM\Column(length: 255)]
+    private ?string $position = null;
 
     public function __construct()
     {
@@ -127,6 +130,18 @@ class Review
                 $image->setReview(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPosition(): ?string
+    {
+        return $this->position;
+    }
+
+    public function setPosition(string $position): static
+    {
+        $this->position = $position;
 
         return $this;
     }

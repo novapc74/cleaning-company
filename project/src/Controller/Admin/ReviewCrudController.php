@@ -35,6 +35,7 @@ class ReviewCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            FormField::addTab('Основное'),
             TextField::new('name', 'ФИО')
                 ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
                 ->setTextAlign('center')
@@ -45,11 +46,22 @@ class ReviewCrudController extends AbstractCrudController
                 ->setTextAlign('center')
             ,
             FormField::addRow(),
+            TextField::new('position', 'Должность')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
+                ->setTextAlign('center')
+            ,
+            DateTimeField::new('createdAt', 'Время создания')
+                ->formatValue((fn($value, $entity) => (new IntlDateFormatter('ru_RU', 3, 3, null, null, 'd MMMM Y h:m'))->format($entity->getCreatedAt())))
+                ->setTextAlign('center')
+                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
+                ->setTextAlign('center')
+            ,
+            FormField::addRow(),
             TextEditorField::new('comment', 'Комментарий')
                 ->setColumns('col-sm-12 col-lg-10 col-xxl-6')
                 ->setTextAlign('center')
             ,
-            FormField::addRow(),
+            FormField::addTab('Изображения'),
             IntegerField::new('image', false)
                 ->onlyOnIndex()
                 ->setTemplatePath('admin/crud/assoc_gallery.html.twig')
@@ -60,12 +72,6 @@ class ReviewCrudController extends AbstractCrudController
                 ->onlyOnForms()
                 ->renderExpanded()
                 ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
-            ,
-            DateTimeField::new('createdAt', 'Время создания')
-                ->formatValue((fn($value, $entity) => (new IntlDateFormatter('ru_RU', 3, 3, null, null, 'd MMMM Y h:m'))->format($entity->getCreatedAt())))
-                ->setTextAlign('center')
-                ->setColumns('col-sm-6 col-lg-5 col-xxl-3')
-                ->setTextAlign('center')
             ,
         ];
     }
