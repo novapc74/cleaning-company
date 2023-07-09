@@ -18,13 +18,14 @@ class HomePageController extends AbstractController
     {
         return $this->render('pages/home.html.twig', [
             'about_us' => $pageSectionRepository->findOneBy(['type' => 6]),
-            'about_collection' => $pageSectionRepository->findBy(['type' => 5]),
-            'how_it_works_collection' => $pageSectionRepository->findBy(['type' => 1]),
-            'question_answer_collection' => $pageSectionRepository->findBy(['type' => 2]),
-            'services_collection' => $pageSectionRepository->findBy(['type' => 3]),
-            'advantages_collection' => $pageSectionRepository->findBy(['type' => 4]),
-            'gallery_collection' => $galleryRepository->findBy(['type' => 1]),
             'reviews' => $reviewRepository->findAll(),
+	        'about_collection' => $pageSectionRepository->findBy(['type' => 5]),
+	        'how_it_works_collection' => $pageSectionRepository->findBy(['type' => 1]),
+	        'question_answer_collection' => $pageSectionRepository->findBy(['type' => 2]),
+	        'services_collection' => $pageSectionRepository->findBy(['type' => 3]),
+	        'advantages_collection' => $pageSectionRepository->findBy(['type' => 4]),
+	        'gallery_collection' => $galleryRepository->findBy(['type' => 1]),
+            'cases_collection' => $pageSectionRepository->findBy(['type' => 7]),
         ]);
     }
 }

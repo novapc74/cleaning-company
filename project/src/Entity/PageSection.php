@@ -37,6 +37,7 @@ class PageSection
 
     private const ABOUT_TYPE = 5;
     private const ABOUT_US_TYPE = 6;
+    private const CASE_TYPE = 7;
 
     #[ArrayShape([
 		'О нас' => 'integer',
@@ -44,7 +45,8 @@ class PageSection
 		'Как мы работаем' => 'integer',
 		'Вопрос - ответ' => 'integer',
 		'Наши услуги' => 'integer',
-		'Преимущества' => 'integer'
+		'Преимущества' => 'integer',
+        'Наши проекты' => 'integer'
 	])]
 	public static function getAvailableSectionType(): array
 	{
@@ -55,6 +57,7 @@ class PageSection
 			'Вопрос - ответ' => self::QUESTION_TYPE,
 			'Наши услуги' => self::SERVICE_TYPE,
 			'Преимущества' => self::ADVANTAGE_TYPE,
+            'Наши проекты' => self::CASE_TYPE,
 		];
 	}
     public function __construct()
