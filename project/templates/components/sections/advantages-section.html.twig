@@ -5,9 +5,7 @@
                 <li class="advantages-section__advantage advantage">
                     <h3 class="base-section__heading advantage__title">{{ item.title }}</h3>
                     <div class="base-section__content advantage__content">
-                        <p>
-                            {{ item.description }}
-                        </p>
+                        {{ item.description | raw }}
                     </div>
                 </li>
             {% endfor %}
