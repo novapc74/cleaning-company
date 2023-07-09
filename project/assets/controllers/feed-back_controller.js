@@ -4,6 +4,7 @@ export default class extends Controller {
     static targets = ['form', 'feedBackForm'];
     static values = {
         url: String,
+        identifier: String
     }
 
     connect() {
