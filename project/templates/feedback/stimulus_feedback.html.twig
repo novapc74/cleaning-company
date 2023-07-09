@@ -3,7 +3,11 @@
 {% block title %}Feedback{% endblock %}
 
 {% block content %}
-<div {{ stimulus_controller('feedback', { url: path('app_feedback')}) }}>
-    <div {{ stimulus_target('feedback', 'form') }}></div>
-</div>
+
+    <div {{ stimulus_controller('feedback', {
+        url: path('app_feedback')
+    }) }}>
+        <div {{ stimulus_target('feedback', 'form') }}></div>
+    </div>
+
 {% endblock %}

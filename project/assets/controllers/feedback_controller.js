@@ -4,7 +4,6 @@ export default class extends Controller {
     static targets = ['form', 'feedBackForm'];
     static values = {
         url: String,
-        identifier: String
     }
 
     connect() {
@@ -12,9 +11,6 @@ export default class extends Controller {
     }
 
     async getFeedBackForm(event) {
-        const params = new URLSearchParams({
-            type: this.typeValue,
-        });
         const response = await fetch(this.urlValue, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
