@@ -1,4 +1,50 @@
-{{ form_start(feedbackForm) }}
-    {{ form_row(feedbackForm) }}
-    <button type="submit">Поехали!</button>
-{{ form_end(feedbackForm) }}
+{% set data = formClass|default('') %}
+
+{{ form_start(feedbackForm, {
+    'attr': {
+        'class': 'feedback-form ' ~ data
+    },
+}) }}
+<div class="feedback-form__control">
+    {{ form_widget(feedbackForm.name, {
+        'attr': {
+            'class': 'feedback-form__input',
+        }}) }}
+</div>
+<div class="feedback-form__control">
+    {{ form_widget(feedbackForm.phone, {
+        'attr': {
+            'class': 'footer__form-input',
+        }}) }}
+</div>
+<div class="feedback-form__control">
+    {{ form_widget(feedbackForm.email, {
+        'attr': {
+            'class': 'footer__form-input',
+        }}) }}
+</div>
+<label for="{{ feedbackForm.agreeTerm.vars.id }}" class="feedback-form__checkbox">
+    {{ form_widget(feedbackForm.agreeTerm) }}
+    <span class="feedback-form__check">
+        <svg>
+            <use xlink:href="{{ asset('build/images/svg/sprite.svg') }}#check-input"></use>
+        </svg>
+    </span>
+    <div class="feedback-form__policy">
+        <span>
+            Я принимаю условия
+        </span>
+        <a href="/privacy">
+            Политики конфиденциальности
+        </a>
+    </div>
+</label>
+{# {{ form_widget(feedbackForm.captcha) }} #}
+{# <input type="hidden" id="{{ feedbackForm.vars.id }}_token" data-name="{{ feedbackForm.vars.id }}_token" #}
+{#       value="{{ csrf_token(feedbackForm.vars.id~'_token') }}"> #}
+
+<button class="feedback-form__btn" type="submit">
+    Отправить
+</button>
+{{ form_end(feedbackForm,{'render_rest': false}) }}
+

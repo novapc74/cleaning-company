@@ -12,11 +12,10 @@ export const validateForm = (form, url, popup = null) => {
             color: "#ff0000",
         }
     });
-    const inputs = [...form.querySelectorAll('input')],
-        submitBtn = form.querySelector('button[type="submit"]')
+    const inputs = [...form.querySelectorAll('input')]
 
     inputs.forEach(input => {
-        if (input.dataset.name === 'phone') {
+        if (input.name === 'phone') {
             phoneMask(input)
             validation.addField(input, [
                 {
@@ -29,7 +28,7 @@ export const validateForm = (form, url, popup = null) => {
                 }
             ],)
         }
-        if (input.dataset.name === 'fio') {
+        if (input.name === 'name') {
             validation.addField(input, [
                 {
                     rule: 'required',
@@ -37,7 +36,20 @@ export const validateForm = (form, url, popup = null) => {
                 }
             ],)
         }
-        if (input.dataset.name === 'isAgree') {
+        if (input.name === 'email') {
+            validation.addField(input, [
+                {
+                    rule: 'function',
+                    validator: () => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(input.value),
+                    errorMessage: 'Некорректный email',
+                },
+                {
+                    rule: 'required',
+                    errorMessage: 'Обязательное поле',
+                }
+            ],)
+        }
+        if (input.name === 'agreeTerm') {
             validation.addField(input, [
                 {
                     rule: 'required',

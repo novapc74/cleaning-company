@@ -140,6 +140,7 @@
   position: relative;
   color: $brown-light;
   input {
+    width: 100%;
     padding: 20px;
     @include text-14;
     border: 1px solid $grey;
@@ -152,25 +153,22 @@
       top: 50%;
       transform: translateY(-50%);
       left: 20px;
-      padding: 0 6px;
+      padding: 0 5px;
       background-color: $white;
       transition-property: color, font-size, top;
       transition-duration: .4s;
       transition-timing-function: ease;
     }
 
-    &:active, &.base-input_fill {
+    &:focus, &:not(:placeholder-shown), &.fill-input {
+      border-color: $brown;
       & ~ label {
-        top: 0;
+        top: 2px;
         font-size: 12px;
       }
     }
 
-    &:focus {
-      border-color: $brown;
-    }
-
-    &.base-input_success {
+    &.success-input {
       border-color: $orange;
 
       & ~ label {
@@ -178,19 +176,19 @@
       }
     }
 
-    &.base-input_error {
+    &.error-input {
       border-color: $red;
 
       & ~ label {
         color: $red;
       }
 
-      & ~ .base-input__error {
+      & ~ .error-input {
         opacity: 1;
       }
     }
 
-    & ~ .base-input__error {
+    & ~ .error-input {
       @include text-14;
       font-size: 12px;
       position: absolute;
@@ -201,11 +199,26 @@
     }
 
     @media screen and (min-width: 1280px) {
+      border-radius: 5px;
       &:hover {
         border-color: $brown;
       }
     }
   }
+  .error-input-message {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    color: $red;
+    font-size: 12px;
+    line-height: 140%;
+    opacity: 1;
+    @media screen and (min-width: 1280px) {
+      font-size: 14px;
+    }
+  }
+
 }
 
 // burger

@@ -1,13 +1,18 @@
 <section class="base-section form-section">
     <div class="container">
-        <div class="form-section__header">
-            <h2 class="base-section__title">Оставить заявку</h2>
-            <p class="base-section__text">
-                Для консультации с нашим специалистом оставьте заявку в форме или свяжитесь любым удобным способом:
-            </p>
-        </div>
-        <div class="form-section__wrapper">
-{#            {% include 'feedback/form.html.twig' %}#}
+        <div class="form-section__body">
+            <div class="form-section__header">
+                <h2 class="base-section__title form-section__title">Оставить заявку</h2>
+                <p class="base-section__text">
+                    Для консультации с нашим специалистом оставьте заявку в форме или свяжитесь любым удобным способом:
+                </p>
+            </div>
+            <div class="form-section__wrapper">
+                {#            <div {{ stimulus_controller('feed-back', {'url': path('app_feedback'), 'identifier': 'footer'}) }}>#}
+                {#                <div data-feed-back-target="form"></div>#}
+                {#            </div>#}
+                {% include 'forms/feedback-form.html.twig' with { position: 'footer' } %}
+            </div>
         </div>
     </div>
 </section>

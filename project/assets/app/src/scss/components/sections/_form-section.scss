@@ -1,0 +1,27 @@
+.form-section {
+  &__body {
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+  }
+  &__header {
+    margin-bottom: 25px;
+    @media screen and (min-width: 768px) {
+      flex: 1;
+      margin-bottom: 0;
+      max-width: 40%;
+    }
+  }
+  &__title {
+    @media screen and (min-width: 768px) {
+      margin-bottom: 25px;
+    }
+  }
+  &__wrapper {
+    @media screen and (min-width: 768px) {
+      width: 50%;
+    }
+  }
+}

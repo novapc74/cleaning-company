@@ -16,6 +16,7 @@
 // подключения компонентов страницы
 @import "components/base/header";
 @import "components/base/footer";
+@import "components/forms/feedback-form";
 
 // страницы
 @import "pages/policy";
@@ -28,6 +29,7 @@
 @import "components/sections/swiper-section";
 @import "components/sections/advantages-section";
 @import "components/sections/clients-section";
+@import "components/sections/form-section";
 
 // слайды
 @import "components/slides/review-slide";

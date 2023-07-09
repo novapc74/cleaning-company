@@ -19,7 +19,7 @@ class FeedbackFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Имя',
+                'label' => 'Ваше имя',
                 'constraints' => [
                     new NotBlank()
                 ]
@@ -38,7 +38,7 @@ class FeedbackFormType extends AbstractType
                 ]
             ])
             ->add('phone', TelType::class, [
-                'label' => 'Телефон',
+                'label' => 'Номер телефона',
                 'constraints' => [
                     new NotBlank()
                 ]

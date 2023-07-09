@@ -1,0 +1,35 @@
+<form action="" class="feedback-form">
+    <div class="feedback-form__control">
+        <input type="text" id="{{ position }}-feedback-name" name="name" required="required"
+               class="feedback-form__input" placeholder="">
+        <label for="{{ position }}-feedback-name" class="feedback-form__label">Ваше имя</label>
+    </div>
+    <div class="feedback-form__control">
+        <input type="tel" id="{{ position }}-feedback-phone" name="phone" required="required"
+               class="feedback-form__input text-number" placeholder="">
+        <label for="{{ position }}-feedback-phone" class="feedback-form__label">Номер телефона</label>
+    </div>
+    <div class="feedback-form__control">
+        <input type="email" id="{{ position }}-feedback-email" name="email" required="required"
+               class="feedback-form__input" placeholder="">
+        <label for="{{ position }}-feedback-email" class="feedback-form__label">Email</label>
+    </div>
+    <label for="{{ position }}-feedback-agree" class="feedback-form__checkbox">
+        <input type="checkbox" id="{{ position }}-feedback-agree" name="agreeTerm" required="required" value="1">
+        <span class="feedback-form__check">
+            <svg>
+                <use xlink:href="{{ asset('build/images/svg/sprite.svg') }}#check-input"></use>
+            </svg>
+        </span>
+        <div class="feedback-form__policy">
+            <span>
+                Я соглашаюсь с
+            </span>
+            <a href="/privacy">
+                политикой конфиденциальности
+            </a>
+        </div>
+    </label>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('feedbackForm') }}">
+    <button class="feedback-form__btn">Отправить</button>
+</form>

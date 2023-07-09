@@ -15,9 +15,9 @@ class FeedbackController extends AbstractController
 	#[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
 	public function index(Request $request, ManagerRegistry $managerRegistry): Response
 	{
-		if (!$request->isXmlHttpRequest()) {
-			return $this->redirectToRoute('app_home_page');
-		}
+//		if (!$request->isXmlHttpRequest()) {
+//			return $this->redirectToRoute('app_home_page');
+//		}
 
 		$feedBack = new Feedback();
 		$form     = $this->createForm(FeedbackFormType::class, $feedBack);
