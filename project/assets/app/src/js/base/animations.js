@@ -52,6 +52,7 @@ export default function animations() {
         gsap.fromTo(item, {
             opacity: 0,
             xPercent: -50,
+            duration: 1.5
         }, {
             opacity: 1,
             xPercent: 0,
@@ -63,6 +64,28 @@ export default function animations() {
         })
     })
 
+    if (document.querySelector('.about-section')) {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                start: 'top center',
+                trigger: '.about-section',
+                scroller: '.scroll-container'
+            }
+        })
+        tl.fromTo('.about-section__heading', {
+            opacity: 0,
+            x: -300
+        }, {
+            opacity: 1,
+            x: 0
+        }).fromTo('.about-section__description', {
+            opacity: 0,
+            x: -200
+        }, {
+            opacity: 1,
+            x: 0
+        })
+    }
 
     document.addEventListener('click', (evt) => {
         evt.preventDefault()
