@@ -12,8 +12,8 @@ export default function animations() {
         el: document.querySelector(".scroll-container"),
         smooth: true,
         smoothMobile: true,
-        tablet: {
-            breakpoint: 0,
+        smartphone: {
+            smooth: true,
         }
     });
 

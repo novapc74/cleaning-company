@@ -5,6 +5,7 @@ body {
   font-family: $ff-main;
   font-size: 16px;
   color: $brown;
+  overflow-x: hidden;
   overflow: overlay;
 
   &::-webkit-scrollbar {
