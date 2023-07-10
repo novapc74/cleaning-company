@@ -6,7 +6,7 @@
                     <div class="swiper-wrapper">
                         {% for item in gallery %}
                             <div class="swiper-slide gallery-slider__slide">
-                                <img src="{{ vich_uploader_asset(item.image,'imageFile') }}" alt="">
+                                <img src="{{ vich_uploader_asset(item.image,'imageFile') | imagine_filter_cache('middle_banner') }}" alt="">
                             </div>
                         {% endfor %}
                     </div>

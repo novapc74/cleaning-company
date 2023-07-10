@@ -1,9 +1,11 @@
 import {Controller} from '@hotwired/stimulus';
+import {log} from "video.js";
 
 export default class extends Controller {
-    static targets = ['form', 'feedBackForm'];
+    static targets = ['form'];
     static values = {
         url: String,
+        identifier: String
     }
 
     connect() {
@@ -11,7 +13,11 @@ export default class extends Controller {
     }
 
     async getFeedBackForm(event) {
-        const response = await fetch(this.urlValue, {
+        const params = new URLSearchParams({
+            identifier: this.identifierValue,
+        });
+
+        const response = await fetch(`${this.urlValue}?${params.toString()}`, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }
@@ -19,13 +25,19 @@ export default class extends Controller {
 
         if (this.formTarget.innerHTML === '') {
             this.formTarget.innerHTML = await response.text();
+            console.log(this.formTarget)
         }
     }
 
     async resolveFeedBack(event) {
-        const formData = new FormData(this.feedBackFormTarget);
+        const params = new URLSearchParams({
+            identifier: this.identifierValue,
+        });
 
-        const response = await fetch(this.urlValue,
+        const form = this.formTarget.querySelector('form')
+        const formData = new FormData(form);
+
+        const response = await fetch(`${this.urlValue}?${params.toString()}`,
             {
                 body: formData,
                 method: "post",

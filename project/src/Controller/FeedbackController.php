@@ -13,43 +13,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FeedbackController extends AbstractController
 {
-    #[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
-    public function index(Request $request, ManagerRegistry $managerRegistry): Response
-    {
-//		$this->getData();
-
+	#[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
+	public function index(Request $request, ManagerRegistry $managerRegistry): Response
+	{
 		if (!$request->isXmlHttpRequest()) {
 			return $this->redirectToRoute('app_home_page');
 		}
 
-        $feedBack = new Feedback();
-        $form = $this->createForm(FeedbackFormType::class, $feedBack);
+		$identifier = $request->query->get('identifier', 'none');
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $feedBack = $form->getData();
+		$feedBack = new Feedback();
+		$form = $this->createFormBuilder($feedBack)
+			->create($identifier, FeedbackFormType::class)
+			->getForm();
 
-            $em = $managerRegistry->getManager();
-            $em->persist($feedBack);
-            $em->flush();
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+			$feedBack = $form->getData();
 
-            return new Response(true, 201);
-        }
+			$em = $managerRegistry->getManager();
+			$em->persist($feedBack);
+			$em->flush();
 
-        return $this->render("feedback/stimulus_form.html.twig", [
-            'feedbackForm' => $form->createView()
-        ]);
-    }
+			return new Response(true, 201);
+		}
 
-//	public function getData()
-//	{
-//		$feedBack = new Feedback();
-//
-//		$formBuilder = $this->createFormBuilder($feedBack);
-//		$formBuilder->create('test', FeedbackFormType::class);
-//
-//		dd($formBuilder->getForm());
-//
-//	}
-
+		return $this->render("feedback/stimulus_form.html.twig", [
+			'feedbackForm' => $form->createView()
+		]);
+	}
 }
