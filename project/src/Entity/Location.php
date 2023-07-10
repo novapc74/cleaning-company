@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LocationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
 class Location
@@ -14,12 +15,15 @@ class Location
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['location:list'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['location:list'])]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['location:list'])]
     private ?string $coordinates = null;
 
     public function getId(): ?int
