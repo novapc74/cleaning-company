@@ -27,7 +27,7 @@ export default class extends Controller {
 
         if (this.formTarget.innerHTML === '') {
             this.formTarget.innerHTML = await response.text();
-            validateForm(this.formTarget.querySelector('form'), '/feedback')
+            validateForm(this.formTarget.querySelector('form'), '/feedback', document.querySelector('.sidebar'))
             locoScroll.update()
         }
     }

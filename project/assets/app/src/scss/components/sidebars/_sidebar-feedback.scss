@@ -37,3 +37,30 @@
     }
   }
 }
+.sidebar-notice {
+
+  .sidebar__inner {
+    @media screen and (min-width: 1280px) {
+      max-width: 670px;
+    }
+  }
+
+  & &__body {
+    position: relative;
+    opacity: 1;
+    user-select: auto;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    @include title-4;
+    color: $orange;
+    @media screen and (min-width: 1280px) {
+      @include title-2;
+    }
+  }
+}

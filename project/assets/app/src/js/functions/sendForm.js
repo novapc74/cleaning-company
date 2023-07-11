@@ -1,10 +1,13 @@
 import axios from "axios";
 import {addClass} from "./classMethods";
+import {openSidebar} from "../base/sidebars";
 
 export default async function sendForm(form, url, popup = null) {
-    const messageSuccess = 'Менеджер свяжется с Вами в ближайшее время, чтобы обсудить детали.',
+    const message = popup.querySelector('.sidebar-notice__title'),
+        burger = document.querySelector('.header__burger')
+    const messageSuccess = 'Ваша заявка отправлена!',
         messageError = 'Пожалуйста, проверьте введенные данные и повторите попытку позже. Если проблема сохраняется, свяжитесь с нами напрямую для получения дополнительной помощи.'
-    // const inputs = [...form.querySelectorAll('input')]
+
     const identifier = form.parentElement.dataset.feedbackIdentifierValue
     const formData = new FormData(form)
     const urlValue = identifier ? `${url}?identifier=${identifier}` : url
@@ -17,15 +20,13 @@ export default async function sendForm(form, url, popup = null) {
         }
     }).then((response) => {
         if (popup) {
-            if (popup.classList.contains('side-modal')) {
-                const messageText = popup.querySelector('.notice-side__description')
-                popup.querySelector('.notice-side__title').textContent = response.data.message
-                popup.className = ('side-modal notice-side')
-                if (response.data.success) {
-                    messageText.textContent = messageSuccess
+            if (popup.classList.contains('sidebar')) {
+                openSidebar(popup, burger, 'sidebar-notice')
+                if (response.data) {
+                    message.textContent = messageSuccess
                 } else {
-                    addClass(popup, 'side-modal notice-side notice-side--error')
-                    messageText.textContent = messageError
+                    message.textContent = messageError
+                    openSidebar(popup, burger, 'sidebar-notice')
                 }
             }
             popup && addClass(popup, 'active')
@@ -33,9 +34,8 @@ export default async function sendForm(form, url, popup = null) {
         form.reset()
     }).catch((e) => {
         console.log(e)
-        if (popup.classList.contains('side-modal')) {
-            popup.className = ('side-modal notice-side notice-side--error')
-            popup.querySelector('.notice-side__title').textContent = 'Ваша заявка не отправлена!'
+        if (popup.classList.contains('sidebar')) {
+            openSidebar(popup, burger, 'sidebar-notice')
             popup.querySelector('.notice-side__description').textContent = messageError
         }
         popup && addClass(popup, 'active')

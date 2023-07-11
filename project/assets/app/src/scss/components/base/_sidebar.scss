@@ -12,6 +12,9 @@
   opacity: 0;
   transition: opacity .6s ease;
   pointer-events: none;
+  @media screen and (min-width: 1280px) {
+    z-index: 200;
+  }
 
   &.active, &.active &__inner {
     right: 0;

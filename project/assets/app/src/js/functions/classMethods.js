@@ -33,3 +33,8 @@ export function toggleHidden(elem, isHidden, time = 400, display = 'block') {
         elem.style.display = 'none'
     }, time)
 }
+
+export function removeExtraClass(el, className) {
+    const removingClass = [...el.classList].find(item => item !== className && item !== 'active')
+    removingClass && removeClass(el, removingClass)
+}
