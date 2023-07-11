@@ -42,6 +42,7 @@ export function openSidebar(sidebar, burger, className) {
     toggleWindowScroll(false)
     addClass(burger, 'opened')
     burger.dataset.type = 'close-sidebar'
+    document.querySelector('.header') && removeClass(document.querySelector('.header'),'hidden')
 }
 
 
