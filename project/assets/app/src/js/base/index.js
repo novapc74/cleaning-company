@@ -5,12 +5,19 @@ import sidebars from "./sidebars";
 import animations from "./animations";
 import videos from "./videos";
 import maps from "./maps";
+import {removeClass} from "../functions/classMethods";
+
 document.addEventListener('DOMContentLoaded', () => {
     swipers()
     sidebars()
     dropdowns()
     // forms()
-    animations()
     videos()
     maps()
+})
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.page-loader')
+    animations()
+    removeClass(loader, 'active')
+    setTimeout(() => loader.remove(), 600)
 })

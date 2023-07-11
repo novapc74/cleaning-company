@@ -1,6 +1,6 @@
 import axios from "axios";
 import {addClass, removeClass} from "./classMethods";
-import {openSidebar} from "../base/sidebars";
+import {closeSidebar, openSidebar} from "../base/sidebars";
 
 export default async function sendForm(form, url, popup = null) {
     const message = popup.querySelector('.sidebar-notice__title'),
@@ -21,19 +21,20 @@ export default async function sendForm(form, url, popup = null) {
     }).then((response) => {
         if (popup) {
             if (popup.classList.contains('sidebar')) {
-                openSidebar(popup, burger, 'sidebar-notice')
                 if (response.data.success) {
                     message.textContent = messageSuccess
                     removeClass(message, 'sidebar-notice__title_error')
                 } else {
                     message.textContent = messageError
                     addClass(message, 'sidebar-notice__title_error')
-                    openSidebar(popup, burger, 'sidebar-notice')
                 }
             }
-            popup && addClass(popup, 'active')
+            openSidebar(popup, burger, 'sidebar-notice')
         }
         form.reset()
+        setTimeout(() => {
+           popup.classList.contains('active') && closeSidebar(popup, burger)
+        }, 3000)
     }).catch((e) => {
         console.log(e)
         if (popup.classList.contains('sidebar')) {

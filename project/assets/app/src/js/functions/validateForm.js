@@ -2,6 +2,7 @@ import JustValidate from 'just-validate';
 import phoneMask from "./phoneMask";
 import sendForm from "./sendForm";
 import {addClass, removeClass} from "./classMethods";
+import locoScroll from "../components/locoScroll";
 
 export const validateForm = (form, url, popup = null) => {
     const validation = new JustValidate(form, {

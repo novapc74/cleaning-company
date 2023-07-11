@@ -1,0 +1,64 @@
+@import "../../vars";
+.page-loader {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity .6s ease;
+  background-color: rgba(248, 248, 248, 0.7);
+  backdrop-filter: blur(15px);
+  &__inner {
+    width: 130px;
+    height: 130px;
+    border: 3px solid $white;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    animation: rotation 1s linear infinite;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 138px + 8px;
+      height: 138px + 8px;
+      border-radius: 50%;
+      border: 3px solid;
+      border-color: $orange transparent;
+    }
+  }
+  &__text {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    svg {
+      height: 60px;
+      fill: $brown;
+    }
+  }
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}

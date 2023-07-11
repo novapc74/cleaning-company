@@ -1,7 +1,7 @@
 <div class="case-slide">
     {% if slide.gallery.count %}
         <div class="case-slide__image">
-            <img src="{{ vich_uploader_asset(slide.gallery[0].image, 'imageFile') }}"
+            <img src="{{ vich_uploader_asset(slide.gallery[0].image, 'imageFile') | imagine_filter_cache('middle_banner') }}"
                  alt="{{ slide.title }}">
         </div>
     {% endif %}

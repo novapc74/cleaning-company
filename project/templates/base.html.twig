@@ -25,12 +25,14 @@
 {% set isHome = isHome | default(false) %}
 {% set contact = contacts() %}
 
+{% include 'components/page-loader.html.twig' %}
+
+{% block header %}
+    {% include 'header.html.twig' %}
+{% endblock %}
+
 <div class="scroll-container" data-scroll-speed="500">
     <span id="page-top"></span>
-
-    {% block header %}
-        {% include 'header.html.twig' %}
-    {% endblock %}
 
     {% block content %}{% endblock %}
 
@@ -38,14 +40,14 @@
         {% include 'footer.html.twig' %}
     {% endblock %}
 
-    {% include 'components/sidebars/base-sidebar.html.twig' %}
-
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
         <script src="https://api-maps.yandex.ru/2.1/?apikey=e3c02e3a-d397-446f-8447-2bc2faffd9c9&lang=ru_RU" type="text/javascript">
         </script>
     {% endblock %}
 </div>
+
+{% include 'components/sidebars/base-sidebar.html.twig' %}
 
 </body>
 </html>

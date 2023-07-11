@@ -6,7 +6,8 @@ const locoScroll = new LocomotiveScroll({
     smoothMobile: true,
     smartphone: {
         smooth: true,
-    }
+    },
+    scrollFromAnywhere: true
 });
 
 export default locoScroll
