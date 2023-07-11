@@ -29,7 +29,6 @@ class FeedbackController extends AbstractController
 
 		$form->handleRequest($request);
 
-
 		if ($form->isSubmitted() && $form->isValid()) {
 			$feedBack = $form->getData();
 

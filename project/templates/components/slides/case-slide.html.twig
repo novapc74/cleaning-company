@@ -1,10 +1,14 @@
 <div class="case-slide">
-    <div class="case-slide__image">
+    {% if slide.gallery.count %}
+        <div class="case-slide__image">
             <img src="{{ vich_uploader_asset(slide.gallery[0].image, 'imageFile') }}"
                  alt="{{ slide.title }}">
-    </div>
-    <div class="case-slide__bottom">
-        <h3 class="case-slide__title">{{ case.title }}</h3>
-        <div class="case-slide__description text-number">{{ case.description | raw }}</div>
-    </div>
+        </div>
+    {% endif %}
+    {% if case %}
+        <div class="case-slide__bottom">
+            <h3 class="case-slide__title">{{ case.title }}</h3>
+            <div class="case-slide__description text-number">{{ case.description | raw }}</div>
+        </div>
+    {% endif %}
 </div>
