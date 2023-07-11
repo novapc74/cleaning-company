@@ -1,6 +1,7 @@
 import {Controller} from '@hotwired/stimulus';
 import {log} from "video.js";
 import {validateForm} from "../app/src/js/functions/validateForm";
+import locoScroll from "../app/src/js/components/locoScroll";
 
 export default class extends Controller {
     static targets = ['form'];
@@ -27,6 +28,7 @@ export default class extends Controller {
         if (this.formTarget.innerHTML === '') {
             this.formTarget.innerHTML = await response.text();
             validateForm(this.formTarget.querySelector('form'), '/feedback')
+            locoScroll.update()
         }
     }
 

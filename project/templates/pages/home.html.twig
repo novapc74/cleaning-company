@@ -32,7 +32,7 @@
         {% endif %}
 
         {#    секция с видео #}
-        {% include 'components/sections/video-section.html.twig' with { video: asset('build/video/SpCC.mp4'), id: 'spcc-video' } %}
+        {% include 'components/sections/video-section.html.twig' with { video: asset('build/video/SpCC.mp4'), id: 'spcc-video', poster: asset('build/images/video-poster.jpg') } %}
 
         {#    секция "Преимущества" #}
         {% if advantages_collection | length %}
