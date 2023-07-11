@@ -41,7 +41,7 @@
     </div>
 </label>
 
-<input type="hidden" name="_csrf_token" value="{{ csrf_token('feedbackForm') }}">
+{{ form_widget(feedbackForm._token) }}
 
 <button class="feedback-form__btn">
     Отправить

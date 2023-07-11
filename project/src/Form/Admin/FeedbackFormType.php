@@ -24,13 +24,6 @@ class FeedbackFormType extends AbstractType
                     new NotBlank()
                 ]
             ])
-            ->add('connectionType', ChoiceType::class, [
-                'label' => 'Тип связи',
-                'choices' => FeedBack::getAvailableConnectionType(),
-                'constraints' => [
-                    new NotBlank()
-                ]
-            ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'constraints' => [
@@ -42,9 +35,6 @@ class FeedbackFormType extends AbstractType
                 'constraints' => [
                     new NotBlank()
                 ]
-            ])
-            ->add('comment', TextType::class, [
-                'label' => 'Комментарий'
             ])
             ->add('agreeTerm', CheckboxType::class, [
                 'label' => 'Пользовательское соглашение',
