@@ -36,7 +36,7 @@ class FeedbackController extends AbstractController
 			$em->persist($feedBack);
 			$em->flush();
 
-			return new Response(true, 201);
+			return $this->json(['success' => true], 201);
 		}
 
 		return $this->render("feedback/form.html.twig", [

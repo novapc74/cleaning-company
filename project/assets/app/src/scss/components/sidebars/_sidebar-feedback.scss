@@ -1,3 +1,4 @@
+@import "../../mixins";
 .sidebar-feedback {
 
   .sidebar__inner {
@@ -59,8 +60,14 @@
   &__title {
     @include title-4;
     color: $orange;
+    text-align: center;
     @media screen and (min-width: 1280px) {
       @include title-2;
+    }
+
+    &_error {
+      color: $grey;
+      @include title-4;
     }
   }
 }
