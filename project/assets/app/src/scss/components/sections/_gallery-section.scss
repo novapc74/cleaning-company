@@ -40,10 +40,6 @@
     text-align: center;
     letter-spacing: -2px;
     user-select: none;
-    @media screen and (min-width: 1280px) {
-      font-size: 26px;
-      letter-spacing: -4px;
-    }
     @media screen and (min-width: 1600px) {
       position: absolute;
       bottom: -50px;

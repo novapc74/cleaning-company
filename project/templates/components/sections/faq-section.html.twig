@@ -2,11 +2,11 @@
     <div class="container">
         <h2 class="base-section__title">Ответы на часто задаваемые вопросы</h2>
         <ul class="faq-section__list">
-            <li class="faq-section__item">
-                {% for item in faq %}
+            {% for item in faq %}
+                <li class="faq-section__item">
                     {% include 'components/base-dropdown.html.twig' with { name: 'faq', title: item.title, content: item.description } %}
-                {% endfor %}
-            </li>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </section>

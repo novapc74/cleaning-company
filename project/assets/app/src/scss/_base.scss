@@ -34,6 +34,13 @@ img {
   object-fit: cover;
 }
 
+.main {
+  //padding-top: 50px;
+  //@media screen and (min-width: 1280px) {
+  //  padding-top: 84px;
+  //}
+}
+
 .container {
   max-width: $maxWidth;
   padding-left: 10px;

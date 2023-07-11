@@ -2,11 +2,11 @@
     <div class="container">
         <h2 class="base-section__title">Как мы работаем</h2>
         <ul class="steps-section__steps">
-            <li class="steps-section__step">
-                {% for item in steps %}
+            {% for item in steps %}
+                <li class="steps-section__step">
                     {% include 'components/base-dropdown.html.twig' with { count: loop.index, name: 'process', title: item.title, content: item.description } %}
-                {% endfor %}
-            </li>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </section>

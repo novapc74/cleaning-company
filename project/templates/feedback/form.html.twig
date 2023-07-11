@@ -1,27 +1,28 @@
-{% set data = formClass|default('') %}
-
 {{ form_start(feedbackForm, {
     'attr': {
-        'class': 'feedback-form ' ~ data
+        'class': 'feedback-form'
     },
 }) }}
-<div class="feedback-form__control">
+<div class="feedback-form__control base-input">
     {{ form_widget(feedbackForm.name, {
         'attr': {
             'class': 'feedback-form__input',
         }}) }}
+    {{ form_label(feedbackForm.name, null, { 'label_attr': {'class': 'feedback-form__label'} }) }}
 </div>
-<div class="feedback-form__control">
+<div class="feedback-form__control base-input">
     {{ form_widget(feedbackForm.phone, {
         'attr': {
-            'class': 'footer__form-input',
+            'class': 'feedback-form__input text-number',
         }}) }}
+    {{ form_label(feedbackForm.phone, null, { 'label_attr': {'class': 'feedback-form__label'} }) }}
 </div>
-<div class="feedback-form__control">
+<div class="feedback-form__control base-input">
     {{ form_widget(feedbackForm.email, {
         'attr': {
-            'class': 'footer__form-input',
+            'class': 'feedback-form__input',
         }}) }}
+    {{ form_label(feedbackForm.email, null, { 'label_attr': {'class': 'feedback-form__label'} }) }}
 </div>
 <label for="{{ feedbackForm.agreeTerm.vars.id }}" class="feedback-form__checkbox">
     {{ form_widget(feedbackForm.agreeTerm) }}
@@ -39,12 +40,19 @@
         </a>
     </div>
 </label>
-{# {{ form_widget(feedbackForm.captcha) }} #}
-{# <input type="hidden" id="{{ feedbackForm.vars.id }}_token" data-name="{{ feedbackForm.vars.id }}_token" #}
-{#       value="{{ csrf_token(feedbackForm.vars.id~'_token') }}"> #}
 
-<button class="feedback-form__btn" type="submit">
+<input type="hidden" name="_csrf_token" value="{{ csrf_token('feedbackForm') }}">
+
+<button class="feedback-form__btn">
     Отправить
 </button>
+
+{#<button {{ stimulus_action('feedback', 'resolveFeedBack') }}>#}
+{#    {% if buttonName is defined %}#}
+{#        {{ buttonName }}#}
+{#    {% else %}#}
+{#        Отправить#}
+{#    {% endif %}#}
+{#</button>#}
 {{ form_end(feedbackForm,{'render_rest': false}) }}
 

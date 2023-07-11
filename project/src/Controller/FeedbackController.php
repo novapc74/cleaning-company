@@ -38,7 +38,7 @@ class FeedbackController extends AbstractController
 			return new Response(true, 201);
 		}
 
-		return $this->render("feedback/stimulus_form.html.twig", [
+		return $this->render("feedback/form.html.twig", [
 			'feedbackForm' => $form->createView()
 		]);
 	}

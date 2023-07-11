@@ -1,0 +1,35 @@
+@import "../mixins";
+.error-page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__body {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      max-width: 625px;
+    }
+    @media screen and (min-width: 1600px) {
+      max-width: 900px;
+    }
+  }
+  &__image {
+    width: 100%;
+    margin-bottom: 30px;
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  &__title {
+    @include title-4;
+  }
+  &__btn {
+    margin-top: auto;
+    @include orange-button;
+    width: 100%;
+    @media screen and (min-width: 1280px) {
+      margin-top: 35px;
+    }
+  }
+}

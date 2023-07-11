@@ -1,5 +1,6 @@
 import {Controller} from '@hotwired/stimulus';
 import {log} from "video.js";
+import {validateForm} from "../app/src/js/functions/validateForm";
 
 export default class extends Controller {
     static targets = ['form'];
@@ -25,7 +26,7 @@ export default class extends Controller {
 
         if (this.formTarget.innerHTML === '') {
             this.formTarget.innerHTML = await response.text();
-            console.log(this.formTarget)
+            validateForm(this.formTarget.querySelector('form'), '/feedback')
         }
     }
 

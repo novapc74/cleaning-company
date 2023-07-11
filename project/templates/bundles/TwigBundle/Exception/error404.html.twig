@@ -3,9 +3,18 @@
 {% block title %}404{% endblock %}
 
 {% block content %}
-    <h1>Страница не найдена 404</h1>
-    <hr>
-    <p>
-        <a href="{{ path('app_home_page') }}">Домой!</a>
-    </p>
+<main class="main error-page">
+<div class="container">
+    <div class="error-page__body">
+        <div class="error-page__image">
+            <img src="{{ asset('build/images/404.png') }}" alt="404">
+        </div>
+        <h1 class="error-page__title">Страница не найдена</h1>
+    </div>
+    <a href="/" class="error-page__btn">Вернуться на главную</a>
+</div>
+</main>
+{% endblock %}
+
+{% block footer %}
 {% endblock %}

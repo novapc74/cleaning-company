@@ -31,8 +31,8 @@
                         <div class="footer-contact__name">Адрес</div>
                         {% set address = contact.address %}
                         <a href="{{ contact.link }}"
-                           class="footer-contact__value">{{ contact.explodeAddress[0] }}
-                            <br>{{ contact.explodeAddress[1] }}</a>
+                           class="footer-contact__value">{{ contact.explodeAddress[0] | trim }}
+                            <br>{{ contact.explodeAddress[1] | trim }}</a>
                     </li>
                 {% endif %}
                 {% if contact.email is not null and contact.email is defined %}

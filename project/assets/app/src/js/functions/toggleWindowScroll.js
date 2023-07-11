@@ -1,5 +1,12 @@
 import {addClass, removeClass} from "./classMethods";
+import locoScroll from "../components/locoScroll";
 
 export default function toggleWindowScroll(state) {
-    state ? removeClass(document.body, 'no-scroll') : addClass(document.body, 'no-scroll')
+    if (state) {
+        removeClass(document.body, 'no-scroll')
+        locoScroll.start()
+        return
+    }
+    addClass(document.body, 'no-scroll')
+    locoScroll.stop()
 }

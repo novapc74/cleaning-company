@@ -1,6 +1,7 @@
 import JustValidate from 'just-validate';
 import phoneMask from "./phoneMask";
 import sendForm from "./sendForm";
+import {addClass, removeClass} from "./classMethods";
 
 export const validateForm = (form, url, popup = null) => {
     const validation = new JustValidate(form, {
@@ -15,7 +16,13 @@ export const validateForm = (form, url, popup = null) => {
     const inputs = [...form.querySelectorAll('input')]
 
     inputs.forEach(input => {
-        if (input.name === 'phone') {
+
+        input.closest('.base-input') && input.addEventListener('blur', (evt) => {
+            const target = evt.currentTarget
+            target.value !== '' ? addClass(target, 'fill-input') : removeClass(target, 'fill-input')
+        } )
+
+        if (input.type === 'tel') {
             phoneMask(input)
             validation.addField(input, [
                 {
@@ -28,7 +35,7 @@ export const validateForm = (form, url, popup = null) => {
                 }
             ],)
         }
-        if (input.name === 'name') {
+        if (input.type === 'text') {
             validation.addField(input, [
                 {
                     rule: 'required',
@@ -36,7 +43,7 @@ export const validateForm = (form, url, popup = null) => {
                 }
             ],)
         }
-        if (input.name === 'email') {
+        if (input.type === 'email') {
             validation.addField(input, [
                 {
                     rule: 'function',
@@ -49,7 +56,7 @@ export const validateForm = (form, url, popup = null) => {
                 }
             ],)
         }
-        if (input.name === 'agreeTerm') {
+        if (input.type === 'checkbox') {
             validation.addField(input, [
                 {
                     rule: 'required',

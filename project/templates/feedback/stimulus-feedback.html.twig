@@ -1,0 +1,10 @@
+{% if formName is defined %}
+    {% set identifier = formName %}
+{% else %}
+    {% set identifier = 'feedbackForm' %}
+{% endif %}
+
+<div {{ stimulus_controller('feedback', {
+    url: path('app_feedback'),
+    identifier: identifier
+}) }} {{ stimulus_target('feedback', 'form') }}></div>

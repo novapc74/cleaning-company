@@ -47,7 +47,13 @@
   }
 
   &__title {
-
+    @media screen and (min-width: 1280px) {
+      cursor: pointer;
+      transition: color .4s ease;
+      &:hover {
+        color: $brown_light;
+      }
+    }
   }
   &__content {
     @include text-14-16;
@@ -118,9 +124,5 @@
   &.active &__inner {
     opacity: 1;
     max-height: var(--height);
-  }
-
-  &:first-child &__header {
-    padding-top: 0;
   }
 }

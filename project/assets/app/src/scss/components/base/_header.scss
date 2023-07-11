@@ -2,10 +2,13 @@
 @import '../../mixins';
 
 .header {
+  width: 100%;
   position: relative;
   z-index: 150;
-  @media screen and (min-width: 1280px) {
-    position: unset;
+  transition: opacity .6s ease;
+  background-color: $white;
+  &.hidden {
+    opacity: 0;
   }
   &__container {
     display: flex;

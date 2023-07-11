@@ -15,12 +15,12 @@
     {% endblock %}
 
 </head>
-<body>
+<body class="no-scroll">
 
 {% set isHome = isHome | default(false) %}
 {% set contact = contacts() %}
 
-<div class="scroll-container">
+<div class="scroll-container" data-scroll-speed="500">
     {% block header %}
         {% include 'header.html.twig' %}
     {% endblock %}
@@ -35,9 +35,10 @@
 
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=e3c02e3a-d397-446f-8447-2bc2faffd9c9&lang=ru_RU" type="text/javascript">
+        </script>
     {% endblock %}
 </div>
 
-<script src="https://api-maps.yandex.ru/2.1/?apikey=&amp;lang=ru_RU" type="text/javascript"></script>
 </body>
 </html>

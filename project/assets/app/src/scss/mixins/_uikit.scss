@@ -7,7 +7,7 @@
   border-radius: 5px;
   color: $white;
   text-transform: uppercase;
-  @include text-14-16;
+  @include text-14;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.4s ease;
@@ -192,9 +192,10 @@
       transition-property: color, font-size, top;
       transition-duration: .4s;
       transition-timing-function: ease;
+      cursor: auto;
     }
 
-    &:focus, &:not(:placeholder-shown), &.fill-input {
+    &:focus, &.fill-input {
       border-color: $brown;
       & ~ label {
         top: 2px;

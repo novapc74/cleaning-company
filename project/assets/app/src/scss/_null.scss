@@ -1,3 +1,4 @@
+@import "vars";
 /*Обнуление*/
 * {
   padding: 0;
@@ -93,7 +94,7 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-background-clip: text;
-  -webkit-text-fill-color: #fff;
+  -webkit-text-fill-color: $brown_light;
 }
 
 /*--------------------*/

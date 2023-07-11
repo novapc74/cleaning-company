@@ -1,7 +1,9 @@
 @import "../../mixins";
 .base-section {
+  position: relative;
   padding-top: 80px;
   padding-bottom: 80px;
+  background-color: $white;
   &:not(&_grey) + &:not(&_grey) {
     padding-top: 0;
   }

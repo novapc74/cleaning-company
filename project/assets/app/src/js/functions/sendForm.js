@@ -5,11 +5,13 @@ export default async function sendForm(form, url, popup = null) {
     const messageSuccess = 'Менеджер свяжется с Вами в ближайшее время, чтобы обсудить детали.',
         messageError = 'Пожалуйста, проверьте введенные данные и повторите попытку позже. Если проблема сохраняется, свяжитесь с нами напрямую для получения дополнительной помощи.'
     // const inputs = [...form.querySelectorAll('input')]
+    const identifier = form.parentElement.dataset.feedbackIdentifierValue
     const formData = new FormData(form)
+    const urlValue = identifier ? `${url}?identifier=${identifier}` : url
 
     // inputs.length && inputs.forEach(input => formData.append(input.dataset.name, input.value))
 
-    await axios.post(url, formData, {
+    await axios.post(urlValue, formData, {
         headers: {
             "X-Requested-With": 'XMLHttpRequest'
         }

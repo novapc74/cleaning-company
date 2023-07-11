@@ -1,21 +1,15 @@
-import LocomotiveScroll from 'locomotive-scroll';
 import {gsap} from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {log} from "video.js";
+import toggleWindowScroll from "../functions/toggleWindowScroll";
+import locoScroll from "../components/locoScroll";
+import {addClass, removeClass} from "../functions/classMethods";
 
 gsap.registerPlugin(ScrollTrigger)
 ScrollTrigger.config({ignoreMobileResize: true});
 
 export default function animations() {
 
-    const locoScroll = new LocomotiveScroll({
-        el: document.querySelector(".scroll-container"),
-        smooth: true,
-        smoothMobile: true,
-        smartphone: {
-            smooth: true,
-        }
-    });
+    toggleWindowScroll(1)
 
     locoScroll.on("scroll", ScrollTrigger.update);
 
@@ -30,7 +24,22 @@ export default function animations() {
         pinType: document.querySelector(".scroll-container").style.transform ? "transform" : "fixed"
     });
 
-    if(document.querySelector('.hero-section')) {
+    // header
+    if(document.querySelector('.header')) {
+        let deltaValue = 0
+        const header = document.querySelector('.header')
+        locoScroll.on('scroll', ({ delta }) => {
+            if(delta.y === deltaValue) {
+                deltaValue = delta.y
+                return
+            }
+            delta.y > deltaValue ? addClass(header,'hidden') : removeClass(header,'hidden')
+            deltaValue = delta.y
+        })
+    }
+
+    // hero
+    if (document.querySelector('.hero-section')) {
         const tl = gsap.timeline()
         tl.fromTo('.hero-section__title', {
             opacity: 0,
@@ -45,8 +54,20 @@ export default function animations() {
             opacity: 1,
             y: 0
         })
+
+        gsap.to('.hero-section', {
+            scrollTrigger: {
+                start: 'top top',
+                end: () => `+=${window.innerHeight * 2}`,
+                trigger: '.hero-section',
+                scroller: '.scroll-container',
+                scrub: true
+            },
+            yPercent: 100
+        })
     }
 
+    // section titles
     const baseSectionTitles = gsap.utils.toArray('.base-section__title')
     baseSectionTitles.length && baseSectionTitles.forEach(item => {
         gsap.fromTo(item, {
@@ -64,6 +85,7 @@ export default function animations() {
         })
     })
 
+    // about
     if (document.querySelector('.about-section')) {
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -87,10 +109,43 @@ export default function animations() {
         })
     }
 
+    const fadeFromSide = (className, reverse = false) => {
+        const items = gsap.utils.toArray(className)
+        items && items.forEach(item => {
+            gsap.from(item, {
+                opacity: 0,
+                x: reverse ? 150 : -150,
+                scrollTrigger: {
+                    trigger: item,
+                    scroller: '.scroll-container',
+                    scrub: 1.5,
+                    start: "top bottom",
+                    end: "top center"
+                }
+            })
+        })
+    }
+
+    // services
+    fadeFromSide('.services-section__service', true)
+    const services = [...document.querySelectorAll('.service')]
+    if(services.length) {
+        services.forEach(item => item.addEventListener('mouseenter', evt => {
+            evt.target.closest('.service') && addClass(evt.target.closest('.service'), 'active')
+        }))
+        services.forEach(item => item.addEventListener('mouseleave', evt => {
+            evt.target.closest('.service') && removeClass(evt.target.closest('.service'), 'active')
+        }))
+    }
+
+    fadeFromSide('.advantages-section__advantage')
+    fadeFromSide('.steps-section__step')
+    fadeFromSide('.faq-section__item')
+
     document.addEventListener('click', (evt) => {
-        evt.preventDefault()
         const target = evt.target
-        if(target.closest('[data-anchor-link]')) {
+        if (target.closest('[data-anchor-link]')) {
+            evt.preventDefault()
             const anchor = '#' + evt.target.closest('[data-anchor-link]').dataset.anchor
             locoScroll.scrollTo(anchor)
         }
