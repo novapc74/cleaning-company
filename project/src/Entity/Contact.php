@@ -123,4 +123,11 @@ class Contact
 
 		return $this;
 	}
+
+	public function getNumericPhone(): string
+	{
+		$replaceChars = ['+', '(', ')', ' ', '-'];
+
+		return str_replace($replaceChars, '', $this->phone);
+	}
 }

@@ -44,7 +44,7 @@
                 {% if contact.phone is not null and contact.phone is defined %}
                     <li class="footer__contact footer-contact">
                         <div class="footer-contact__name">Телефон</div>
-                        <a href="tel:{{ contact.phone }}"
+                        <a href="tel:{{ contact.numericPhone }}"
                            class="footer-contact__value text-number">{{ contact.phone }}</a>
                     </li>
                 {% endif %}

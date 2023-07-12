@@ -19,7 +19,7 @@
 
     {% if contact is not null and contact is defined %}
         {% if contact.phone is not null and contact.phone is defined %}
-            <a href="tel:+7 (812) 712-62-19" class="sidebar-menu__phone text-number">+7 (812) 712-62-19</a>
+            <a href="tel:{{ contact.numericPhone }}" class="sidebar-menu__phone text-number">{{ contact.phone }}</a>
         {% endif %}
     {% endif %}
 
