@@ -35,10 +35,10 @@ img {
 }
 
 .main {
-  //padding-top: 50px;
-  //@media screen and (min-width: 1280px) {
-  //  padding-top: 84px;
-  //}
+  padding-top: 50px;
+  @media screen and (min-width: 1280px) {
+    padding-top: 84px;
+  }
 }
 
 .container {

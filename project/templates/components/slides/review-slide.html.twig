@@ -1,13 +1,20 @@
 <div class="review-slide">
-    <div class="review-slide__image">
-        <img src="{{ vich_uploader_asset(review.image[1].image, 'imageFile') }}" alt="{{ review.name }}">
-    </div>
+    {% if review.image[1] is defined %}
+        <div class="review-slide__image">
+            <img src="{{ vich_uploader_asset(review.image[1].image, 'imageFile') }}" alt="{{ review.name }}">
+        </div>
+    {% endif %}
     <div class="review-slide__text">
         {{ review.comment | raw }}
     </div>
     <div class="review-slide__bottom">
         <div class="review-slide__avatar">
+            {% if review.image[1] is defined %}
             <img src="{{ vich_uploader_asset(review.image[0].image, 'imageFile') }}" alt="{{ review.name }}">
+            {% else %}
+                {% set initials = review.name | split(' ') %}
+                <div class="review-slide__initials">{{ initials[0] | slice(0,1) }}{{ initials[1] | slice(0,1) }}</div>
+            {% endif %}
         </div>
         <div class="review-slide__info">
             <div class="review-slide__name">{{ review.name }}</div>

@@ -1,6 +1,5 @@
 import toggleWindowScroll from "../functions/toggleWindowScroll";
 import {addClass, removeClass, removeExtraClass} from "../functions/classMethods";
-import locoScroll from "../components/locoScroll";
 
 export default function sidebars() {
     const sidebar = document.querySelector('.sidebar'),
