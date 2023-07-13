@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\GalleryRepository;
+use App\Repository\LocationRepository;
 use App\Repository\PageSectionRepository;
 use App\Repository\ReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +15,7 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'app_home_page')]
     public function index(PageSectionRepository $pageSectionRepository,
                           GalleryRepository     $galleryRepository,
-                          ReviewRepository      $reviewRepository): Response
+                          ReviewRepository      $reviewRepository, LocationRepository $locationRepository): Response
     {
         return $this->render('pages/home.html.twig', [
             'about_us' => $pageSectionRepository->findOneBy(['type' => 6]),
@@ -26,7 +27,8 @@ class HomePageController extends AbstractController
 	        'advantages_collection' => $pageSectionRepository->findBy(['type' => 4]),
 	        'gallery_collection' => $galleryRepository->findBy(['type' => 1]),
             'cases_collection' => $pageSectionRepository->findBy(['type' => 7]),
-            'isHome' => true
+            'isHome' => true,
+	        'locations' => $locationRepository->findAll(),
         ]);
     }
 }

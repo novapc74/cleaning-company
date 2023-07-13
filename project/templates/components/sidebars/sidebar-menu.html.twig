@@ -1,20 +1,33 @@
 <div class="sidebar__body sidebar-menu__body">
     <ul class="sidebar-menu__list">
-        <li class="sidebar-menu__item">
-            <a href="#" data-anchor-link data-anchor="about" data-type="close-sidebar" class="sidebar-menu__link">О нас</a>
-        </li>
-        <li class="sidebar-menu__item">
-            <a href="#" data-anchor-link data-anchor="services" data-type="close-sidebar" class="sidebar-menu__link">Услуги</a>
-        </li>
-        <li class="sidebar-menu__item">
-            <a href="#" data-anchor-link data-anchor="process" data-type="close-sidebar" class="sidebar-menu__link">Процесс работы</a>
-        </li>
-        <li class="sidebar-menu__item">
-            <a href="#" data-anchor-link data-anchor="partners" data-type="close-sidebar" class="sidebar-menu__link">Клиенты</a>
-        </li>
-        <li class="sidebar-menu__item">
-            <a href="#" data-anchor-link data-anchor="contacts" data-type="close-sidebar" class="sidebar-menu__link">Контакты</a>
-        </li>
+        {% if about() %}
+            <li class="sidebar-menu__item">
+                <a href="#" data-anchor-link data-anchor="about" data-type="close-sidebar" class="sidebar-menu__link">О
+                    нас</a>
+            </li>
+        {% endif %}
+        {% if service() %}
+            <li class="sidebar-menu__item">
+                <a href="#" data-anchor-link data-anchor="services" data-type="close-sidebar"
+                   class="sidebar-menu__link">Услуги</a>
+            </li>
+        {% endif %}
+        {% if work() %}
+            <li class="sidebar-menu__item">
+                <a href="#" data-anchor-link data-anchor="process" data-type="close-sidebar" class="sidebar-menu__link">Процесс
+                    работы</a>
+            </li>
+        {% endif %}
+            <li class="sidebar-menu__item">
+                <a href="#" data-anchor-link data-anchor="partners" data-type="close-sidebar"
+                   class="sidebar-menu__link">Клиенты</a>
+            </li>
+        {% if contacts() %}
+            <li class="sidebar-menu__item">
+                <a href="#" data-anchor-link data-anchor="contacts" data-type="close-sidebar"
+                   class="sidebar-menu__link">Контакты</a>
+            </li>
+        {% endif %}
     </ul>
 
     {% if contact is not null and contact is defined %}

@@ -19,7 +19,7 @@
         {% include 'components/sections/hero-section.html.twig' %}
 
         {#    секция "О нас" #}
-        {% if about_us | length %}
+        {% if about_us %}
             {% include 'components/sections/about-section.html.twig' with { section: about_us } %}
             {% if about_us.gallery | length %}
                 {% include 'components/sections/gallery-section.html.twig' with { gallery: about_us.gallery } %}
@@ -55,10 +55,13 @@
         {% endif %}
 
         {#    секция "Наша география" #}
-        {% include 'components/sections/geography-section.html.twig' %}
+        {% if locations | length %}
+            {% include 'components/sections/geography-section.html.twig' %}
+        {% endif %}
 
         {#    секция "Наши клиенты" #}
         {% include 'components/sections/clients-section.html.twig' %}
+
 
         {#    секция "Ответы на часто задаваемые вопросы" #}
         {% if question_answer_collection | length %}
