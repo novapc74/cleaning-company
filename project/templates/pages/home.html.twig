@@ -46,12 +46,12 @@
 
         {#    секция "Наши проекты" #}
         {% if cases_collection | length %}
-            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases_collection } %}
+            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'cases', title: 'Наши проекты', slides: cases_collection, id: 'cases' } %}
         {% endif %}
 
         {#    секция "Отзывы" #}
         {% if reviews | length %}
-            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'reviews', title: 'Отзывы', slides: reviews } %}
+            {% include 'components/sections/swiper-section.html.twig' with { theme: 'grey', type: 'reviews', title: 'Отзывы', slides: reviews, id: 'reviews' } %}
         {% endif %}
 
         {#    секция "Наша география" #}

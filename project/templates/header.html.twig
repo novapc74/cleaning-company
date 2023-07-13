@@ -12,21 +12,34 @@
 
         <nav class="header__nav header-nav">
             <ul class="header-nav__list">
-                <li class="header-nav__item">
-                    <a href="#" data-anchor-link data-anchor="about" class="header-nav__link">О нас</a>
-                </li>
-                <li class="header-nav__item">
-                    <a href="#" data-anchor-link data-anchor="services" class="header-nav__link">Услуги</a>
-                </li>
-                <li class="header-nav__item">
-                    <a href="#" data-anchor-link data-anchor="process" class="header-nav__link">Процесс работы</a>
-                </li>
-                <li class="header-nav__item">
-                    <a href="#" data-anchor-link data-anchor="partners" class="header-nav__link">Клиенты</a>
-                </li>
-                <li class="header-nav__item">
-                    <a href="#" data-anchor-link data-anchor="contacts" class="header-nav__link">Контакты</a>
-                </li>
+                {% if about() %}
+                    <li class="header-nav__item">
+                        <a href="#" data-anchor-link data-anchor="about" class="header-nav__link">О нас</a>
+                    </li>
+                {% endif %}
+                {% if service() %}
+                    <li class="header-nav__item">
+                        <a href="#" data-anchor-link data-anchor="services" class="header-nav__link">Услуги</a>
+                    </li>
+                {% endif %}
+                {% if work() %}
+                    <li class="header-nav__item">
+                        <a href="#" data-anchor-link data-anchor="process" class="header-nav__link">Процесс работы</a>
+                    </li>
+                {% endif %}
+                {% if case() %}
+                    <li class="header-nav__item">
+                        <a href="#" data-anchor-link data-anchor="cases" class="header-nav__link">Наши проекты</a>
+                    </li>
+                {% endif %}
+{#                <li class="header-nav__item">#}
+{#                    <a href="#" data-anchor-link data-anchor="partners" class="header-nav__link">Клиенты</a>#}
+{#                </li>#}
+                {% if contacts() %}
+                    <li class="header-nav__item">
+                        <a href="#" data-anchor-link data-anchor="contacts" class="header-nav__link">Контакты</a>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
         <div class="header__contact">

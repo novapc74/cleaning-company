@@ -39,15 +39,14 @@
     {% block footer %}
         {% include 'footer.html.twig' %}
     {% endblock %}
-
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-        <script src="https://api-maps.yandex.ru/2.1/?apikey=e3c02e3a-d397-446f-8447-2bc2faffd9c9&lang=ru_RU" type="text/javascript">
-        </script>
-    {% endblock %}
 </div>
 
 {% include 'components/sidebars/base-sidebar.html.twig' %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e3c02e3a-d397-446f-8447-2bc2faffd9c9&lang=ru_RU" type="text/javascript">
+    </script>
+{% endblock %}
 </body>
 </html>

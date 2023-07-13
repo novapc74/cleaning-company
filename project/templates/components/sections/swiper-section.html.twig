@@ -1,5 +1,5 @@
 {% set theme = theme | default('base') %}
-<section class="base-section{% if theme == 'grey'%} base-section_grey{% endif %} swiper-section">
+<section class="base-section{% if theme == 'grey'%} base-section_grey{% endif %} swiper-section" {% if id %}id="{{ id }}"{% endif %}>
     <div class="container">
         <div class="base-section__header swiper-section__header">
             <h2 class="base-section__title">{{ title }}</h2>

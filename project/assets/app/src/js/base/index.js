@@ -6,6 +6,8 @@ import animations from "./animations";
 import videos from "./videos";
 import maps from "./maps";
 import {removeClass} from "../functions/classMethods";
+
+setTimeout(()=> removeLoader(), 2000)
 document.addEventListener('DOMContentLoaded', () => {
     swipers()
     sidebars()
@@ -13,18 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // forms()
     videos()
     maps()
-
-    setTimeout(()=> removeLoader('time'), 2000)
 })
 window.addEventListener('load', () => {
     animations()
-    removeLoader('loaded')
+    removeLoader()
 })
 
-function removeLoader(mes) {
+function removeLoader() {
     const loader = document.querySelector('.page-loader')
     if(loader && loader.classList.contains('active')) {
-        console.log(mes)
         removeClass(loader, 'active')
         setTimeout(() => loader.remove(), 600)
     }
