@@ -45,10 +45,10 @@ class MailerService
 		$email = (new TemplatedEmail())
 			->from($this->mailSender)
 			->addTo($feedback->getEmail())
-			->subject('Горстрой.')
+			->subject('СПКК - новая заявка с сайта.')
 			->htmlTemplate('mailer/email.html.twig')
 			->context([
-				'appeal' => $feedback
+				'feedback' => $feedback
 			]);
 
 		/* add recipients to email */
