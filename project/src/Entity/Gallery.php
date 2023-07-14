@@ -31,16 +31,19 @@ class Gallery
 
 	private const DEFAULT_TYPE = 0;
 	private const ABOUT_PAGE_TYPE = 1;
+	private const ABOUT_BANNER_GALLERY_PAGE_TYPE = 2;
 
 	#[ArrayShape([
 		'По умолчанию' => 'integer',
 		'О нас' => 'integer',
+		'О нас - верхний банер / галерея' => 'integer',
 	])]
 	public static function getAvailableGalleryType(): array
 	{
 		return [
 			'По умолчанию' => self::DEFAULT_TYPE,
 			'О нас' => self::ABOUT_PAGE_TYPE,
+			'О нас - верхний банер / галерея' => self::ABOUT_BANNER_GALLERY_PAGE_TYPE
 		];
 	}
 

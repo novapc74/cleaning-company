@@ -19,6 +19,7 @@ class HomePageController extends AbstractController
     {
         return $this->render('pages/home.html.twig', [
             'about_us' => $pageSectionRepository->findOneBy(['type' => 6]),
+	        'banner_gallery_collection' => $galleryRepository->findBy(['type' => 2]),
             'reviews' => $reviewRepository->findAll(),
 	        'about_collection' => $pageSectionRepository->findBy(['type' => 5]),
 	        'how_it_works_collection' => $pageSectionRepository->findBy(['type' => 1]),

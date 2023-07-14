@@ -49,13 +49,11 @@
             </li>
         {% endif %}
     </ul>
-
     {% if contact is not null and contact is defined %}
         {% if contact.phone is not null and contact.phone is defined %}
             <a href="tel:{{ contact.numericPhone }}" class="sidebar-menu__phone text-number">{{ contact.phone }}</a>
         {% endif %}
     {% endif %}
-
     <button class="sidebar-menu__btn" data-type="open-sidebar" data-sidebar="sidebar-feedback">Оставить заявку</button>
 </div>
 
