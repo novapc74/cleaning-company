@@ -9,19 +9,15 @@
                 {{ section.description | raw }}
             </div>
         </div>
-        <ul class="about-section__numbers">
-            <li class="about-section__number about-number">
-                <div class="about-number__numeric text-number">30 лет</div>
-                <div class="about-number__value">Опыт работы в сферее</div>
-            </li>
-            <li class="about-section__number about-number">
-                <div class="about-number__numeric text-number">500 +</div>
-                <div class="about-number__value">Компаний пользуются нашими услугами</div>
-            </li>
-            <li class="about-section__number about-number">
-                <div class="about-number__numeric text-number">150</div>
-                <div class="about-number__value">Офисов по всей стране</div>
-            </li>
-        </ul>
+        {% if about_collection | length %}
+            <ul class="about-section__numbers">
+                {% for item in about_collection %}
+                    <li class="about-section__number about-number">
+                        <div class="about-number__numeric text-number">{{ item.title }}</div>
+                        <div class="about-number__value">{{ item.description | raw }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 </section>

@@ -22,8 +22,8 @@
         {#    секция "О нас" #}
         {% if about_us %}
             {% include 'components/sections/about-section.html.twig' with { section: about_us } %}
-            {% if about_us.gallery | length %}
-                {% include 'components/sections/gallery-section.html.twig' with { gallery: about_us.gallery } %}
+            {% if gallery_collection | length %}
+                {% include 'components/sections/gallery-section.html.twig' with { gallery: gallery_collection } %}
             {% endif %}
         {% endif %}
 
