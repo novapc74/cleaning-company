@@ -2,7 +2,14 @@
     <div class="container hero-section__container">
         <h1 class="hero-section__title">Санкт-Петербургская клининговая компания</h1>
         <p class="hero-section__description">Безупречная чистота и комфорт для любого объекта - с нами!</p>
-        <button class="hero-section__btn" data-type="open-sidebar" data-sidebar="sidebar-feedback">Оставить заявку</button>
+        <button class="hero-section__btn" data-type="open-sidebar" data-sidebar="sidebar-feedback">Оставить заявку
+        </button>
     </div>
-    <video class="hero-section__bg" src="{{ asset('build/video/video-bg.mp4') }}" preload autoplay loop muted playsinline></video>
+    {#    <video class="hero-section__bg" src="{{ asset('build/video/video-bg.mp4') }}" preload autoplay loop muted playsinline></video> #}
+    {% if banner_gallery_collection %}
+        {% set bgUrl = vich_uploader_asset(banner_gallery_collection[0].image, 'imageFile') | imagine_filter_cache('banner_md') %}
+    {% else %}
+        {% set bgUrl = asset('build/images/default-hero-bg.jpg') %}
+    {% endif %}
+    <img class="hero-section__bg" src="{{ bgUrl }}" alt="spkk background">
 </section>

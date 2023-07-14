@@ -1,17 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}404{% endblock %}
+{% set isError = true %}
+
+{% block header %}
+{% endblock %}
 
 {% block content %}
 <main class="main error-page">
-<div class="container">
+<div class="container error-page__container">
     <div class="error-page__body">
         <div class="error-page__image">
             <img src="{{ asset('build/images/404.png') }}" alt="404">
         </div>
         <h1 class="error-page__title">Страница не найдена</h1>
     </div>
-    <a href="/" class="error-page__btn">Вернуться на главную</a>
+    <div class="container error-page__btn-container">
+        <div class="error-page__btn">
+            <a href="/">Вернуться на главную</a>
+        </div>
+    </div>
 </div>
 </main>
 {% endblock %}

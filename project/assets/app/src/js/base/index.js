@@ -6,8 +6,7 @@ import animations from "./animations";
 import videos from "./videos";
 import maps from "./maps";
 import {removeClass} from "../functions/classMethods";
-
-setTimeout(()=> removeLoader(), 2000)
+import toggleWindowScroll from "../functions/toggleWindowScroll";
 document.addEventListener('DOMContentLoaded', () => {
     swipers()
     sidebars()
@@ -15,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // forms()
     videos()
     maps()
+
+    setTimeout(()=> removeLoader(), 2000)
 })
 window.addEventListener('load', () => {
     animations()
@@ -26,5 +27,6 @@ function removeLoader() {
     if(loader && loader.classList.contains('active')) {
         removeClass(loader, 'active')
         setTimeout(() => loader.remove(), 600)
+        toggleWindowScroll(1)
     }
 }

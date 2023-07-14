@@ -31,7 +31,9 @@
     {% include 'header.html.twig' %}
 {% endblock %}
 
-<div class="scroll-container" data-scroll-speed="500">
+{% set isError = false %}
+
+<div{% if not isError %} class="scroll-container" data-scroll-speed="500"{% endif %}>
     <span id="page-top"></span>
 
     {% block content %}{% endblock %}

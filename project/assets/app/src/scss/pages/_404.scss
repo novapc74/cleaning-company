@@ -1,11 +1,22 @@
 @import "../mixins";
 .error-page {
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 0;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+  }
   &__body {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     @media screen and (min-width: 768px) {
       max-width: 625px;
     }
@@ -24,12 +35,23 @@
   &__title {
     @include title-4;
   }
-  &__btn {
-    margin-top: auto;
-    @include orange-button;
+  &__btn-container {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
     width: 100%;
+    @media screen and (min-width: 768px) {
+      bottom: 80px;
+    }
     @media screen and (min-width: 1280px) {
+      position: unset;
+      padding: 0;
+      max-width: 245px;
       margin-top: 35px;
     }
+  }
+  &__btn {
+    @include orange-button;
+    text-align: center;
   }
 }

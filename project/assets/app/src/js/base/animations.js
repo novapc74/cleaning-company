@@ -2,14 +2,16 @@ import {gsap} from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import toggleWindowScroll from "../functions/toggleWindowScroll";
 import locoScroll from "../components/locoScroll";
-import {addClass, removeClass} from "../functions/classMethods";
+import {addClass, removeClass, toggleActiveClass} from "../functions/classMethods";
 
 gsap.registerPlugin(ScrollTrigger)
 ScrollTrigger.config({ignoreMobileResize: true});
 
 export default function animations() {
 
-    toggleWindowScroll(1)
+    if(!locoScroll) {
+        return
+    }
 
     locoScroll.on("scroll", ScrollTrigger.update);
 
@@ -131,7 +133,7 @@ export default function animations() {
     const services = [...document.querySelectorAll('.service')]
     if(services.length) {
         services.forEach(item => item.addEventListener('mouseenter', evt => {
-            evt.target.closest('.service') && addClass(evt.target.closest('.service'), 'active')
+            evt.target.closest('.service') && toggleActiveClass(evt.target.closest('.service'), '.service', 'active')
         }))
         services.forEach(item => item.addEventListener('mouseleave', evt => {
             evt.target.closest('.service') && removeClass(evt.target.closest('.service'), 'active')
