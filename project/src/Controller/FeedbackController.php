@@ -3,18 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Feedback;
-use App\Form\Admin\FeedbackFooterFormType;
+use App\Service\MailerService;
 use App\Form\Admin\FeedbackFormType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class FeedbackController extends AbstractController
 {
+	/**
+	 * @throws TransportExceptionInterface
+	 */
 	#[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
-	public function index(Request $request, ManagerRegistry $managerRegistry): Response
+	public function index(Request $request, ManagerRegistry $managerRegistry, MailerService $mailerService): Response
 	{
 		if (!$request->isXmlHttpRequest()) {
 			return $this->redirectToRoute('app_home_page');
@@ -35,6 +39,8 @@ class FeedbackController extends AbstractController
 			$em = $managerRegistry->getManager();
 			$em->persist($feedBack);
 			$em->flush();
+
+			$mailerService->resolveMailer($feedBack);
 
 			return $this->json(['success' => true], 201);
 		}

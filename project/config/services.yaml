@@ -6,6 +6,8 @@
 parameters:
     app.path.cache_media: /cache/media
     app.path.upload.media: /upload/media
+    app.mail_sender: '%env(string:MAILER_SENDER)%'
+    app.mail_recipients: '%env(string:MAILER_RECIPIENTS)%'
 
 services:
     # default configuration for services in *this* file
@@ -21,6 +23,11 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Service\MailerService:
+        arguments:
+            $mailSender: '%app.mail_sender%'
+            $mailRecipients: '%app.mail_recipients%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
