@@ -17,6 +17,12 @@ liip_imagine:
                 relative_resize:
                     heighten: 40
 
+        avatar:
+            quality: 95
+            filters:
+                relative_resize:
+                    heighten: 45
+
         banner_md:
             quality: 90
             filters:
