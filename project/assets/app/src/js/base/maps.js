@@ -33,7 +33,14 @@ export default function maps() {
                     map.geoObjects.add(address);
                 })
 
-                window.innerWidth < 768 && map.behaviors.disable(['drag']);
+                window.innerWidth < 768 && map.controls.add('zoomControl', {
+                    size: 'small',
+                    position: {
+                        bottom: 50,
+                        right: 10,
+                        left: 'auto'
+                    }
+                });
 
                 mapWrapper.addEventListener('mouseenter', () => toggleWindowScroll(0))
                 mapWrapper.addEventListener('mouseleave', () => toggleWindowScroll(1))
