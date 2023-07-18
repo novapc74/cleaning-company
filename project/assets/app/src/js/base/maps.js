@@ -1,6 +1,5 @@
 import axios from "axios";
 import toggleWindowScroll from "../functions/toggleWindowScroll";
-import locoScroll from "../components/locoScroll";
 
 export default function maps() {
     if (document.getElementById('geography-map')) {
@@ -36,8 +35,8 @@ export default function maps() {
 
                 window.innerWidth < 768 && map.behaviors.disable(['drag']);
 
-                mapWrapper.addEventListener('mouseenter', () => locoScroll.stop())
-                mapWrapper.addEventListener('mouseleave', () => locoScroll.start())
+                mapWrapper.addEventListener('mouseenter', () => toggleWindowScroll(0))
+                mapWrapper.addEventListener('mouseleave', () => toggleWindowScroll(1))
             });
         }
     }
