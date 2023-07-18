@@ -1,4 +1,3 @@
-import videojs from "video.js";
 import {addClass, removeClass} from "../functions/classMethods";
 
 export default function videos() {
