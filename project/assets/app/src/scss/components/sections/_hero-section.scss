@@ -18,13 +18,13 @@
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 40px;
-    height: calc(100vh - 50px);
+    height: calc(100dvh - 50px);
     @media screen and (min-width: 768px) {
       padding-bottom: 52px;
     }
     @media screen and (min-width: 1280px) {
       padding-bottom: 40px;
-      height: calc(100vh - 84px);
+      height: calc(100dvh - 84px);
     }
     @media screen and (min-width: 1600px) {
       padding-bottom: 82px;
