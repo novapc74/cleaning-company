@@ -43,15 +43,26 @@ class MailerService
 	{
 		$email = (new TemplatedEmail())
 			->from($this->mailSender)
-			->subject('СПКК - новая заявка с сайта.')
 			->htmlTemplate('mailer/client_email.html.twig')
 			->context([
 				'feedback' => $feedback
 			]);
 
-		$type == 'client'
-			? $email->addTo($feedback->getEmail())
-			: array_map(fn(string $recipient) => $email->addTo($recipient), $this->getRecipientsEmail());
+		if ($type == 'client') {
+			$email
+				->addTo($feedback->getEmail())
+				->subject('СПКК - Ваша заявка принята.')
+				->htmlTemplate('mailer/client_email.html.twig');
+		} else {
+			$email
+				->subject('СПКК - новая заявка с сайта.')
+				->htmlTemplate('mailer/feedback_email.html.twig');
+
+			array_map(
+				fn(string $recipient) => $email->addTo($recipient),
+				$this->getRecipientsEmail()
+			);
+		}
 
 		return $email;
 	}
