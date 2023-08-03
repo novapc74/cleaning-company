@@ -7,6 +7,7 @@ use App\Entity\Feedback;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Notifier\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface as TransportException;
 
 class MailerService
 {
@@ -16,20 +17,18 @@ class MailerService
 	{
 	}
 
-	/**
-	 * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
-	 */
 	public function resolveMailer(Feedback $feedback): void
 	{
-		$email = $this->makeEmail($feedback);
-
-		$this->sendEmail($email);
+		array_map(
+			fn(TemplatedEmail $email) => $this->sendEmail($email),
+			array_map(fn($type) => $this->makeEmail($feedback, $type), ['client', 'feedback'])
+		);
 	}
 
 	/**
 	 * @param $email
 	 * @return Exception|TransportExceptionInterface|void
-	 * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+	 * @throws TransportException
 	 */
 	protected function sendEmail($email)
 	{
@@ -40,25 +39,28 @@ class MailerService
 		}
 	}
 
-	private function makeEmail(Feedback $feedback): TemplatedEmail
+	private function makeEmail(Feedback $feedback, string $type): TemplatedEmail
 	{
 		$email = (new TemplatedEmail())
 			->from($this->mailSender)
-			->addTo($feedback->getEmail())
 			->subject('СПКК - новая заявка с сайта.')
-			->htmlTemplate('mailer/email.html.twig')
+			->htmlTemplate('mailer/client_email.html.twig')
 			->context([
 				'feedback' => $feedback
 			]);
 
-		/* add recipients to email */
-		array_map(fn(string $recipient) => $email->addTo($recipient), $this->getRecipientsEmail());
+		$type == 'client'
+			? $email->addTo($feedback->getEmail())
+			: array_map(fn(string $recipient) => $email->addTo($recipient), $this->getRecipientsEmail());
 
 		return $email;
 	}
 
 	private function getRecipientsEmail(): array
 	{
-		return array_map(fn($recipient) => trim($recipient), explode(',', $this->mailRecipients));
+		return array_map(
+			fn($recipient) => trim($recipient),
+			explode(',', $this->mailRecipients)
+		);
 	}
 }
