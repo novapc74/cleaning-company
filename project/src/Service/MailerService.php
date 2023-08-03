@@ -59,8 +59,6 @@ class MailerService
 
 	private function getRecipientsEmail(): array
 	{
-		preg_match_all('~\s+\K\S+@\S+\.\S+\b~u', $this->mailRecipients, $matches, PREG_PATTERN_ORDER);
-
-		return $matches[0];
+		return array_map(fn($recipient) => trim($recipient), explode(',', $this->mailRecipients));
 	}
 }
