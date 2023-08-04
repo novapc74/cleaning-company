@@ -11,7 +11,7 @@ fos_ck_editor:
         [ "Maximize" ],
         [ 'Bold', 'Italic', 'Strike' ],
         [ 'Format' ],
-        #        [ 'Link', 'Unlink' ],
+        [ 'Link', 'Unlink' ],
         #        [ 'Table', 'Image' ],
         [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ],
       ]
