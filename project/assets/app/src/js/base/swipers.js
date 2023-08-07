@@ -67,19 +67,4 @@ export default function swipers() {
             },
         }
     })
-
-    const clientsSwiper = new Swiper('.clients-section__swiper', {
-        slidesPerView: 4,
-        speed: 500,
-        spaceBetween: 15,
-        grid: {
-            fill: 'row',
-            rows: 2
-        },
-        breakpoints: {
-            1280: {
-                spaceBetween: 30,
-            }
-        }
-    })
 }

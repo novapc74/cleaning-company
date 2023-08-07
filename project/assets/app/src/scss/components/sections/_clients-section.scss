@@ -1,6 +1,14 @@
 .clients-section {
-  &__slide {
-    height: 50px;
+  &__clients {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    justify-content: space-around;
+  }
+  &__client {
+    width: 20%;
+    //height: 50px;
     img {
       height: 100%;
       object-fit: contain;
