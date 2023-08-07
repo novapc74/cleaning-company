@@ -5,7 +5,7 @@
         </h2>
         <ul class="services-section__services">
             {% for item in services %}
-                {% set bottom = loop.index == services | length or loop.index == (services | length - 1) %}
+                {% set bottom = loop.index == services | length or (loop.index == (services | length - 1) and services | length > 2) %}
                 <li class="services-section__service">
                     <div class="service{% if loop.index == 1 %} active{% endif %}">
                         <h3 class="base-section__heading service__title">{{ item.title }}</h3>
