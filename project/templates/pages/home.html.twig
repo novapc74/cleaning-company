@@ -71,6 +71,22 @@
             {% include 'components/sections/faq-section.html.twig' with { faq: question_answer_collection } %}
         {% endif %}
 
+        <section class="base-section lada-section">
+            <div class="container">
+                <h2 class="base-section__title">
+                    Продаем LADA LARGUS KSOY5L
+                </h2>
+                <p class="base-section__text">
+                    Цена продажи: 20 000,00 руб. <br>
+                    Общее состояние транспортного средства: технически неисправное состояние.
+                </p>
+                <a class="lada-section__link" href="/files/Договор%20купли-продажи%20ООО%20СПКК.doc" download>Скачать договор оферты</a>
+                <div class="lada-section__img">
+                    <img src="{{ asset('build/images/lada.png') }}" alt="lada largus">
+                </div>
+            </div>
+        </section>
+
         {% include 'components/sections/form-section.html.twig' %}
     </main>
 {% endblock %}
