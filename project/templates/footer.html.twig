@@ -3,9 +3,9 @@
         <div class="footer__body">
             <div class="footer__top">
                 {% if isHome %}
-                <div class="footer__logo logo">
-                    <img src="{{ asset('build/images/logo-full.svg') }}" alt="spkk logo">
-                </div>
+                    <div class="footer__logo logo">
+                        <img src="{{ asset('build/images/logo-full.svg') }}" alt="spkk logo">
+                    </div>
                 {% else %}
                     <a href="/" class="footer__logo logo">
                         <img src="{{ asset('build/images/logo-full.svg') }}" alt="spkk logo">
@@ -48,6 +48,10 @@
                            class="footer-contact__value text-number">{{ contact.phone }}</a>
                     </li>
                 {% endif %}
+                <li class="footer__contact footer-contact">
+                    <div class="footer-contact__name">ИНН</div>
+                    <span class="footer-contact__value text-number">7806486269</span>
+                </li>
             </ul>
         </div>
         {% endif %}
