@@ -47,12 +47,6 @@
     Отправить
 </button>
 
-{#<button {{ stimulus_action('feedback', 'resolveFeedBack') }}>#}
-{#    {% if buttonName is defined %}#}
-{#        {{ buttonName }}#}
-{#    {% else %}#}
-{#        Отправить#}
-{#    {% endif %}#}
-{#</button>#}
+{{ form_errors(form) }}
 {{ form_end(feedbackForm,{'render_rest': false}) }}
 

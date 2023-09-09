@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "axios": "^1.4.0",
+        "ckeditor4": "4.22.*",
         "gsap": "^3.12.2",
         "inputmask": "^5.0.8",
         "just-validate": "^4.2.0",
