@@ -3,17 +3,16 @@
 namespace App\Message;
 
 use App\Entity\Feedback;
-use App\Service\MailerService;
 
 class EmailNotification
 {
-	public function __construct(private readonly MailerService $mailerService, private readonly Feedback $feedback)
+	public function __construct(private readonly Feedback $feedback)
 	{
 	}
 
-	public function sendEmail(): void
+	public function getFeedback(): Feedback
 	{
-		$this->mailerService->resolveMailer($this->feedback);
+		return $this->feedback;
 	}
 
 }
