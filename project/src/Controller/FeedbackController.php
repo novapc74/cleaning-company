@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Feedback;
 use App\Message\EmailNotification;
+use Symfony\Component\Form\Forms;
 use App\Form\Admin\FeedbackFormType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,11 +27,18 @@ class FeedbackController extends AbstractController
 		}
 
 		$identifier = $request->query->get('identifier', 'none');
-
 		$feedBack = new Feedback();
-		$form     = $this->createFormBuilder($feedBack)
-			->create($identifier, FeedbackFormType::class)
+
+		$form_factory = Forms::createFormFactory();
+
+		$form = $form_factory
+			->createNamedBuilder($identifier, FeedbackFormType::class, $feedBack)
 			->getForm();
+
+//		$form = $this->createFormBuilder($feedBack)
+//			->create($identifier, FeedbackFormType::class)
+//			->getForm();
+
 
 		$form->handleRequest($request);
 
