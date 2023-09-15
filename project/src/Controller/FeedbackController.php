@@ -8,10 +8,15 @@ use Symfony\Component\Form\Forms;
 use App\Form\Admin\FeedbackFormType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Psr\Container\ContainerExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 
 class FeedbackController extends AbstractController
 {
@@ -20,25 +25,21 @@ class FeedbackController extends AbstractController
 	#[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
 	public function index(Request             $request,
 	                      ManagerRegistry     $managerRegistry,
-	                      MessageBusInterface $bus): Response
+	                      MessageBusInterface $bus, FormFactoryInterface $formFactory): Response
 	{
 		if (!$request->isXmlHttpRequest()) {
 			return $this->redirectToRoute('app_home_page');
 		}
 
 		$identifier = $request->query->get('identifier', 'none');
-		$feedBack = new Feedback();
+		$feedBack   = new Feedback();
 
-//		$form_factory = Forms::createFormFactory();
-//
-//		$form = $form_factory
-//			->createNamedBuilder($identifier, FeedbackFormType::class, $feedBack)
+		$form_factory = $formFactory->createNamedBuilder($identifier, FeedbackFormType::class, $feedBack);
+		$form = $form_factory->getForm();
+
+//		$form = $this->createFormBuilder($feedBack)
+//			->create($identifier, FeedbackFormType::class)
 //			->getForm();
-
-		$form = $this->createFormBuilder($feedBack)
-			->create($identifier, FeedbackFormType::class)
-			->getForm();
-
 
 		$form->handleRequest($request);
 
