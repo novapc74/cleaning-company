@@ -9,7 +9,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 class EmailNotificationHandler
 {
-	public function __construct(private readonly MailerService $mailerService,)
+	public function __construct(private readonly MailerService $mailerService)
 	{
 	}
 
