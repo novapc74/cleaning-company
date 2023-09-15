@@ -29,15 +29,15 @@ class FeedbackController extends AbstractController
 		$identifier = $request->query->get('identifier', 'none');
 		$feedBack = new Feedback();
 
-		$form_factory = Forms::createFormFactory();
-
-		$form = $form_factory
-			->createNamedBuilder($identifier, FeedbackFormType::class, $feedBack)
-			->getForm();
-
-//		$form = $this->createFormBuilder($feedBack)
-//			->create($identifier, FeedbackFormType::class)
+//		$form_factory = Forms::createFormFactory();
+//
+//		$form = $form_factory
+//			->createNamedBuilder($identifier, FeedbackFormType::class, $feedBack)
 //			->getForm();
+
+		$form = $this->createFormBuilder($feedBack)
+			->create($identifier, FeedbackFormType::class)
+			->getForm();
 
 
 		$form->handleRequest($request);
