@@ -60,41 +60,4 @@ class FeedbackController extends AbstractController
             'feedbackForm' => $form->createView()
         ]);
     }
-//
-//	#[Route('/feedback', name: 'app_feedback', methods: ['GET', 'POST'])]
-//	public function index(Request              $request,
-//	                      ManagerRegistry      $managerRegistry,
-//	                      MessageBusInterface  $bus,
-//	                      FormFactoryInterface $formFactory): Response
-//	{
-//		if (!$request->isXmlHttpRequest()) {
-//			return $this->redirectToRoute('app_home_page');
-//		}
-//
-//		$identifier = $request->query->get('identifier', 'none');
-//		$feedBack   = new Feedback();
-//
-//		$form = $formFactory
-//			->createNamedBuilder($identifier, FeedbackFormType::class, $feedBack)
-//			->getForm();
-//
-//
-//		$form->handleRequest($request);
-//
-//		if ($form->isSubmitted() && $form->isValid()) {
-//			$feedBack = $form->getData();
-//
-//			$em = $managerRegistry->getManager();
-//			$em->persist($feedBack);
-//			$em->flush();
-//
-//			$bus->dispatch(new EmailNotification($feedBack));
-//
-//			return $this->json(['success' => true], 201);
-//		}
-//
-//		return $this->render("feedback/form.html.twig", [
-//			'feedbackForm' => $form->createView()
-//		]);
-//	}
 }
